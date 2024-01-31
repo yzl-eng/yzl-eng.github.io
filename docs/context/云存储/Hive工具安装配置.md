@@ -14,7 +14,7 @@ mkdir setups
 
 首先，我们把相关软件包`apache-hive-2.1.1-bin.tar.gz`和`mysql-connector-java-5.1.42-bin.jar`上传到`admin`用户家目录的新建`setups`目录下。
 
-![image-20230615151528334](Hive工具安装配置.assets/image-20230615151528334.png)
+![image-20230615151528334](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921902.png)
 
 
 
@@ -31,7 +31,7 @@ tar -xzf ~/setups/apache-hive-2.1.1-bin.tar.gz
 #软件包解压解包到'hive'目录下
 ```
 
-![image-20230615151615166](Hive工具安装配置.assets/image-20230615151615166.png)
+![image-20230615151615166](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921903.png)
 
 
 
@@ -39,7 +39,7 @@ tar -xzf ~/setups/apache-hive-2.1.1-bin.tar.gz
 vi ~/.bash_profile
 ```
 
-![image-20230615151644857](Hive工具安装配置.assets/image-20230615151644857.png)
+![image-20230615151644857](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921904.png)
 
 配置Hive相关的环境变量对配置文件进行修改，在文件末尾添加以下内容:
 
@@ -54,7 +54,7 @@ export HIVE_HOME PATH
 #必须按照前面的定义顺序书写
 ```
 
-![image-20230615151724653](Hive工具安装配置.assets/image-20230615151724653.png)
+![image-20230615151724653](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921905.png)
 
 ```shell
 source ~/.bash_profile
@@ -63,7 +63,7 @@ echo $PATH
 #查看新添加和修改的环境变量是否设置成功，以及环境变量的值是否正确。
 ```
 
-![image-20230615151805605](Hive工具安装配置.assets/image-20230615151805605.png)
+![image-20230615151805605](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921906.png)
 
 
 
@@ -77,7 +77,7 @@ cp hive-exec-log4j2.properties.template hive-exec-log4j2.properties
 cp hive-default.xml.template hive-site.xml
 ```
 
-![image-20230615151905157](Hive工具安装配置.assets/image-20230615151905157.png)
+![image-20230615151905157](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921907.png)
 
 
 
@@ -86,7 +86,7 @@ vi hive-env.sh
 #对配置文件进行修改，找到相关配置项并对其值进行修改
 ```
 
-![image-20230615151931034](Hive工具安装配置.assets/image-20230615151931034.png)
+![image-20230615151931034](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921909.png)
 
 找到配置项`HADOOP_HOME`该项用于指定`Hadoop`所在的路径，将其值改为以下内容:
 
@@ -95,7 +95,7 @@ HADOOP_HOME=/home/admin/hadoop/hadoop-2.7.3
 #该路径以Hadoop软件包实际解压解包的路径为准
 ```
 
-![image-20230615152101578](Hive工具安装配置.assets/image-20230615152101578.png)
+![image-20230615152101578](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921910.png)
 
 找到配置项`HIVE_CONF_DIR `该项用于指定Hive的配置文件所在的路径，将其值改为以下内容:
 
@@ -104,7 +104,7 @@ export HIVE_CONF_DIR=/home/admin/hive/apache-hive-2.1.1-bin/conf
 #该路径以实际Hive配置文件模板拷贝的路径为准
 ```
 
-![image-20230615152134753](Hive工具安装配置.assets/image-20230615152134753.png)
+![image-20230615152134753](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921911.png)
 
 找到配置项`HIVE_AUX JARS_PATH`该项用于指定`Hive`的`lib`文件所在的路径，将其值改为以下内容:
 
@@ -113,7 +113,7 @@ export HIVE_AUX_JARS_PATH=/home/admin/hive/apache-hive-2.1.1-bin/lib
 #路径以实际的Hive的lib文件所在路径为准
 ```
 
-![image-20230615152159774](Hive工具安装配置.assets/image-20230615152159774.png)
+![image-20230615152159774](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921912.png)
 
 
 
@@ -140,9 +140,9 @@ jps
 #在集群中所有主机上使用命令“jps”
 ```
 
-![image-20230615152528901](Hive工具安装配置.assets/image-20230615152528901.png)
+![image-20230615152528901](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921913.png)
 
-![image-20230615152545311](Hive工具安装配置.assets/image-20230615152545311.png)
+![image-20230615152545311](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921914.png)
 
 
 
@@ -195,11 +195,11 @@ vi ~/hive/apache-hive-2.1.1-bin/conf/hive-site.xml
 
 
 
-![image-20230615152737897](Hive工具安装配置.assets/image-20230615152737897.png)
+![image-20230615152737897](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921915.png)
 
-![image-20230615153027060](Hive工具安装配置.assets/image-20230615153027060.png)
+![image-20230615153027060](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921916.png)
 
-![image-20230615153134918](Hive工具安装配置.assets/image-20230615153134918.png)
+![image-20230615153134918](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921917.png)
 
 ### 创建hive元数据数据库
 
@@ -242,7 +242,7 @@ quit;#（退出MySQL数据库控制台)
 
 ```
 
-![image-20230615153659553](Hive工具安装配置.assets/image-20230615153659553.png)
+![image-20230615153659553](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921918.png)
 
 - 从此步往后面Hive安装过程的所有操作步骤都需要使用**admin**用户进行。
 - 后面步骤只在集群中**Cluster-01**主机上进行操作即可
@@ -275,13 +275,13 @@ vi ~/hive/apache-hive-2.1.1-bin/conf/hive-site.xml
 
 ```
 
-![image-20230615153912176](Hive工具安装配置.assets/image-20230615153912176.png)
+![image-20230615153912176](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921919.png)
 
-![image-20230615154039731](Hive工具安装配置.assets/image-20230615154039731.png)
+![image-20230615154039731](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921920.png)
 
-![image-20230615154135689](Hive工具安装配置.assets/image-20230615154135689.png)
+![image-20230615154135689](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921921.png)
 
-![image-20230615154243873](Hive工具安装配置.assets/image-20230615154243873.png)
+![image-20230615154243873](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921922.png)
 
 
 
@@ -292,7 +292,7 @@ cp -v ~/setups/mysql-connector-java-5.1.42-bin.jar ~/hive/apache-hive-2.1.1-bin/
 #将MySQL的数据库连接工具包添加到Hive的`lib`目录下
 ```
 
-![image-20230615154317283](Hive工具安装配置.assets/image-20230615154317283.png)
+![image-20230615154317283](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921923.png)
 
 ```shell
 vi ~/hive/apache-hive-2.1.1-bin/conf/hive-site.xml
@@ -310,7 +310,7 @@ vi ~/hive/apache-hive-2.1.1-bin/conf/hive-site.xml
 
 替换掉配置文件中的原有配置内容。保存退出。
 
-![image-20230615154821125](Hive工具安装配置.assets/image-20230615154821125.png)
+![image-20230615154821125](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921924.png)
 
 ```shell
 schematool -initSchema -dbType mysql
@@ -318,7 +318,7 @@ schematool -initSchema -dbType mysql
 
 ```
 
-![image-20230615155517643](Hive工具安装配置.assets/image-20230615155517643.png)
+![image-20230615155517643](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921925.png)
 
 ## Hive工具启动和验证
 
@@ -331,9 +331,9 @@ schematool -initSchema -dbType mysql
 4. 在控制台中使用命令`desc function sum;`或`desc function extended sum;`查看Hive的功能函数的详细信息。
 5. 在控制台中使用命令`quit;`或`exit;`退出Hive的控制台
 
-![image-20230615155643069](Hive工具安装配置.assets/image-20230615155643069.png)
+![image-20230615155643069](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921926.png)
 
-![image-20230615155743211](Hive工具安装配置.assets/image-20230615155743211.png)
+![image-20230615155743211](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311921927.png)
 
 ### 关闭
 

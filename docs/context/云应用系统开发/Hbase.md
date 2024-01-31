@@ -18,9 +18,9 @@ jps
 
 项目中修改`hdfs-site.xml`，`core-site.xml`文件
 
-![image-20231117101711348](Hbase.assets/image-20231117101711348.png)
+![image-20231117101711348](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925932.png)
 
-![image-20231117101918556](Hbase.assets/image-20231117101918556.png)
+![image-20231117101918556](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925933.png)
 
 
 
@@ -30,11 +30,11 @@ hadoop fs -ls webhdfs://192.168.10.112:50070/user
 
 错误提示
 
-![image-20231117104035323](Hbase.assets/image-20231117104035323.png)
+![image-20231117104035323](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925934.png)
 
 在Hadoop集群的`namenode`运行`httpfs.sh start`
 
-![image-20231117102230691](Hbase.assets/image-20231117102230691.png)
+![image-20231117102230691](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925935.png)
 
 
 
@@ -42,7 +42,7 @@ hadoop fs -ls webhdfs://192.168.10.112:50070/user
  hadoop fs -ls webhdfs://192.168.10.112:50070/user
 ```
 
-![image-20231117103657604](Hbase.assets/image-20231117103657604.png)
+![image-20231117103657604](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925936.png)
 
 
 
@@ -50,13 +50,13 @@ hadoop fs -ls webhdfs://192.168.10.112:50070/user
 http://192.168.10.111:50070/webhdfs/v1/user?op=LISTSTATUS
 ```
 
-![image-20231117104148086](Hbase.assets/image-20231117104148086.png)
+![image-20231117104148086](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925937.png)
 
 
 
 检查`yarn-site.xml`
 
-![image-20231117104501041](Hbase.assets/image-20231117104501041.png)
+![image-20231117104501041](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925938.png)
 
 
 
@@ -67,13 +67,13 @@ yarn rmadmin -getServiceState resource-1
 yarn rmadmin -getServiceState resource-2
 ```
 
-![image-20231117104725832](Hbase.assets/image-20231117104725832.png)
+![image-20231117104725832](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925939.png)
 
 
 
 `ResourceManager`机制切换
 
-![image-20231117105156198](Hbase.assets/image-20231117105156198.png)
+![image-20231117105156198](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925940.png)
 
 
 
@@ -83,9 +83,9 @@ start-hbase.sh
 jps
 ```
 
-![image-20231117100852642](Hbase.assets/image-20231117100852642.png)
+![image-20231117100852642](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925941.png)
 
-![image-20231117100915341](Hbase.assets/image-20231117100915341.png)
+![image-20231117100915341](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925942.png)
 
 
 
@@ -103,45 +103,45 @@ drop 'tempTable'
 list
 ```
 
-![image-20231117110506104](Hbase.assets/image-20231117110506104.png)
+![image-20231117110506104](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925943.png)
 
 
 
-![image-20231117110941348](Hbase.assets/image-20231117110941348.png)
+![image-20231117110941348](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925944.png)
 
 
 
 添加host文件
 
-![image-20231117112413598](Hbase.assets/image-20231117112413598.png)
+![image-20231117112413598](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925945.png)
 
 添加`hbase-site.xml`
 
-![image-20231117112448665](Hbase.assets/image-20231117112448665.png)
+![image-20231117112448665](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925946.png)
 
 
 
 ## HBASE测试连接
 
-![image-20231117113908391](Hbase.assets/image-20231117113908391.png)
+![image-20231117113908391](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925947.png)
 
 
 
 ### 创建scores1
 
-![image-20231117114629022](Hbase.assets/image-20231117114629022.png)
+![image-20231117114629022](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925948.png)
 
-![image-20231117114641479](Hbase.assets/image-20231117114641479.png)
+![image-20231117114641479](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925949.png)
 
-![image-20231117114654407](Hbase.assets/image-20231117114654407.png)
+![image-20231117114654407](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925950.png)
 
-![image-20231117114824288](Hbase.assets/image-20231117114824288.png)
+![image-20231117114824288](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925951.png)
 
-![image-20231117114842120](Hbase.assets/image-20231117114842120.png)
+![image-20231117114842120](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925952.png)
 
 ## PUT类方法
 
-![image-20231117115111960](Hbase.assets/image-20231117115111960.png)
+![image-20231117115111960](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925953.png)
 
 
 
@@ -149,8 +149,8 @@ list
 
 ## GET类方法
 
-![image-20231117120315440](Hbase.assets/image-20231117120315440.png)
+![image-20231117120315440](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925954.png)
 
 ## SCAN
 
-![image-20231117120222900](Hbase.assets/image-20231117120222900.png)
+![image-20231117120222900](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311925955.png)

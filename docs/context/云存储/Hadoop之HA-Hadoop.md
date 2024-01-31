@@ -1,4 +1,4 @@
-![image-20230414102808249](Hadoop之HA-Hadoop.assets/image-20230414102808249.png)
+![image-20230414102808249](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916572.png)
 
 
 
@@ -14,7 +14,7 @@ cd ~/hadoop
 #进入该目录
 ```
 
-![image-20230414104248702](Hadoop之HA-Hadoop.assets/image-20230414104248702.png)
+![image-20230414104248702](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916573.png)
 
 ```shell
 tar -xzf ~/setups/hadoop-2.7.3.tar.gz
@@ -23,7 +23,7 @@ vi ~/.bash_profile
 #配置Hadoop相关的环境变量
 ```
 
-![image-20230414104349327](Hadoop之HA-Hadoop.assets/image-20230414104349327.png)
+![image-20230414104349327](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916574.png)
 
 对配置文件进行修改，在文件末尾添加以下
 内容:
@@ -40,7 +40,7 @@ export HADOOP_HOME PATH
 #必须按照前面的定义顺序书写
 ```
 
-![image-20230414105032715](Hadoop之HA-Hadoop.assets/image-20230414105032715.png)
+![image-20230414105032715](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916575.png)
 
 ```shell
 source ~/.bash_profile
@@ -53,7 +53,7 @@ hadoop version
 #验证Hadoop的安装配置是否成功
 ```
 
-![image-20230414105202456](Hadoop之HA-Hadoop.assets/image-20230414105202456.png)
+![image-20230414105202456](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916576.png)
 
 
 
@@ -73,7 +73,7 @@ mkdir tmp name data journal
 
 分别创建Hadoop的**临时文件**目录`tmp`、HDFS的**元数据文件**目录`name` 、HDFS的**数据文件**目录`data`. Journal的**逻辑状态数据**目录`journal`。
 
-![image-20230414115226165](Hadoop之HA-Hadoop.assets/image-20230414115226165.png)
+![image-20230414115226165](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916577.png)
 
 ```shell
 cd ~/hadoop/hadoop-2.7.3/etc/hadoop
@@ -82,7 +82,7 @@ vi hadoop-env.sh
 #对配置文件进行修改
 ```
 
-![image-20230414115423555](Hadoop之HA-Hadoop.assets/image-20230414115423555.png)
+![image-20230414115423555](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916578.png)
 
 找到配置项 `JAVA_HOME` 所在行，将其改为以下内容:(去掉注释 `#` )
 
@@ -91,7 +91,7 @@ export JAVA_HOME=/home/admin/java/jdk1.8.0_131
 #该路径以JDK软件包实际解压解包的路径为准
 ```
 
-![image-20230414115520175](Hadoop之HA-Hadoop.assets/image-20230414115520175.png)
+![image-20230414115520175](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916579.png)
 对配置文件进行修改
 
 ```shell
@@ -122,7 +122,7 @@ vi core-site.xml
 </configuration>
 ```
 
-![image-20230414115657119](Hadoop之HA-Hadoop.assets/image-20230414115657119.png)
+![image-20230414115657119](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916580.png)
 
 对配置文件进行修改
 
@@ -130,7 +130,7 @@ vi core-site.xml
 vi hdfs-site.xml
 ```
 
-![image-20230414115750788](Hadoop之HA-Hadoop.assets/image-20230414115750788.png)
+![image-20230414115750788](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916581.png)
 
 找到标签`<configuration>`所在的位置，在其中添加如下内容:
 
@@ -212,7 +212,7 @@ vi hdfs-site.xml
 </configuration>
 ```
 
-![image-20230414115904694](Hadoop之HA-Hadoop.assets/image-20230414115904694.png)
+![image-20230414115904694](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916582.png)
 
 由模板文件拷贝生成配置文件`mapred-site.xml`
 
@@ -220,7 +220,7 @@ vi hdfs-site.xml
 cp mapred-site.xml.template mapred-site.xml
 ```
 
-![image-20230414120010774](Hadoop之HA-Hadoop.assets/image-20230414120010774.png)
+![image-20230414120010774](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916583.png)
 
 对配置文件进行修改
 
@@ -240,7 +240,7 @@ vi mapred-site.xml
 <!--指定MapReduce所使用的外部管理框架，这里使用Hadoop 2.7.3自带的YARN资源管理器-->
 ```
 
-![image-20230414120619801](Hadoop之HA-Hadoop.assets/image-20230414120619801.png)
+![image-20230414120619801](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916584.png)
 
 对配置文件进行修改
 
@@ -255,7 +255,7 @@ export JAVA_HOME=/home/admin/java/jdk1.8.0_131
 #该路径以JDK软件包实际解压解包的路径为准
 ```
 
-![image-20230414120815045](Hadoop之HA-Hadoop.assets/image-20230414120815045.png)
+![image-20230414120815045](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916585.png)
 
 对配置文件进行修改
 
@@ -304,7 +304,7 @@ specific YARN congfigurationproerties-->
 
 ```
 
-![image-20230414121117080](Hadoop之HA-Hadoop.assets/image-20230414121117080.png)
+![image-20230414121117080](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916586.png)
 
 
 
@@ -324,7 +324,7 @@ LZY-04
 LZY-05
 ```
 
-![image-20230414121220031](Hadoop之HA-Hadoop.assets/image-20230414121220031.png)
+![image-20230414121220031](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916587.png)
 
 备注:
 
@@ -350,9 +350,9 @@ scp -r ~/hadoop ~/.bash_profile admin@LZY-04:/home/admin
 scp -r ~/hadoop ~/.bash_profile admin@LZY-05:/home/admin
 ```
 
-![image-20230415005148072](Hadoop之HA-Hadoop.assets/image-20230415005148072.png)
+![image-20230415005148072](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916588.png)
 
-![image-20230415005535543](Hadoop之HA-Hadoop.assets/image-20230415005535543.png)
+![image-20230415005535543](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916589.png)
 
 集群中每台主机分别进行以下命令操作:
 
@@ -367,7 +367,7 @@ hadoop version
 #验证Hadoop的安装配置是否成功
 ```
 
-![image-20230415005358886](Hadoop之HA-Hadoop.assets/image-20230415005358886.png)
+![image-20230415005358886](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916590.png)
 
 
 
@@ -382,11 +382,11 @@ hadoop-daemon.sh start journalnode
 在**所有同步通信节点**的主机执行，启动同步通信服务，然后使用命令`jps`查看`Java`进程信息，若有名为`JournalNode`的进程，则表示同步通信节点启动成功。
 注:本操作只在第一次安装时执行。安装完成后，以及关机重启服务器后不需要再次执行。
 
-![image-20230415013344790](Hadoop之HA-Hadoop.assets/image-20230415013344790.png)
+![image-20230415013344790](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916591.png)
 
-![image-20230415013433751](Hadoop之HA-Hadoop.assets/image-20230415013433751.png)
+![image-20230415013433751](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916592.png)
 
-![image-20230415013511890](Hadoop之HA-Hadoop.assets/image-20230415013511890.png)
+![image-20230415013511890](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916593.png)
 
 
 
@@ -400,7 +400,7 @@ hadoop-daemon.sh start journalnode
 hadoop namenode -format
 ```
 
-![image-20230415013829517](Hadoop之HA-Hadoop.assets/image-20230415013829517.png)
+![image-20230415013829517](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916594.png)
 
 
 
@@ -414,7 +414,7 @@ hadoop namenode -format
 scp -r ~/hadoop/name admin@LZY-02:/home/admin/hadoop
 ```
 
-![image-20230415013939962](Hadoop之HA-Hadoop.assets/image-20230415013939962.png)
+![image-20230415013939962](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916595.png)
 
 
 
@@ -432,7 +432,7 @@ zkServer.sh status
 zkServer.sh start
 ```
 
-![image-20230415014214338](Hadoop之HA-Hadoop.assets/image-20230415014214338.png)
+![image-20230415014214338](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916596.png)
 
 
 
@@ -448,7 +448,7 @@ zkServer.sh start
 hdfs zkfc -formatZK
 ```
 
-![image-20230415014340701](Hadoop之HA-Hadoop.assets/image-20230415014340701.png)
+![image-20230415014340701](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916597.png)
 
 
 
@@ -460,11 +460,11 @@ hdfs zkfc -formatZK
 hadoop-daemon.sh stop journalnode
 ```
 
-![image-20230415014500983](Hadoop之HA-Hadoop.assets/image-20230415014500983.png)
+![image-20230415014500983](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916598.png)
 
-![image-20230415014536047](Hadoop之HA-Hadoop.assets/image-20230415014536047.png)
+![image-20230415014536047](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916599.png)
 
-![image-20230415014551426](Hadoop之HA-Hadoop.assets/image-20230415014551426.png)
+![image-20230415014551426](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916600.png)
 
 
 
@@ -474,7 +474,7 @@ hadoop-daemon.sh stop journalnode
 start-all.sh
 ```
 
-![image-20230415014705139](Hadoop之HA-Hadoop.assets/image-20230415014705139.png)
+![image-20230415014705139](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916601.png)
 
 
 
@@ -484,7 +484,7 @@ start-all.sh
 yarn-daemon.sh start resourcemanager
 ```
 
-![image-20230415014750066](Hadoop之HA-Hadoop.assets/image-20230415014750066.png)
+![image-20230415014750066](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916602.png)
 
 启动命令，每次重启后，在zookeeper动成功的前提下，只需执行此两步即可。
 
@@ -496,7 +496,7 @@ yarn-daemon.sh start resourcemanager
 jps
 ```
 
-![image-20230415155410254](Hadoop之HA-Hadoop.assets/image-20230415155410254.png)
+![image-20230415155410254](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916603.png)
 
 
 
@@ -516,13 +516,13 @@ cd /home/admin/hadoop/hadoop-2.7.3/logs
 hadoop dfsadmin -report
 ```
 
-![image-20230415162949952](Hadoop之HA-Hadoop.assets/image-20230415162949952.png)
+![image-20230415162949952](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916604.png)
 
 使用命令`ssh 目标主机名或P地址`远程登录到**所有备用主节点**主机，使用命令`jps`查看Java进程信息
 
 若有名为`NameNode`、`ResourceManager`、`DFSZKFailoverController`的三个进程，则表示Hadoop集群的**备用主节点**启动成功。
 
-![image-20230415155707503](Hadoop之HA-Hadoop.assets/image-20230415155707503.png)
+![image-20230415155707503](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916605.png)
 
 
 
@@ -530,11 +530,11 @@ hadoop dfsadmin -report
 
 若有名为`DataNode` 、`NodeManager`、`JournalNode`的三个进程，则表示**Hadoop**集群的**数据节点**启动成功。
 
-![image-20230415160131888](Hadoop之HA-Hadoop.assets/image-20230415160131888.png)
+![image-20230415160131888](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916606.png)
 
-![image-20230415160214194](Hadoop之HA-Hadoop.assets/image-20230415160214194.png)
+![image-20230415160214194](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916607.png)
 
-![image-20230415160237963](Hadoop之HA-Hadoop.assets/image-20230415160237963.png)
+![image-20230415160237963](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916608.png)
 
 
 
@@ -552,7 +552,7 @@ hadoop fs -mkdir -p /user/admin
 hadoop fs -ls -R /
 ```
 
-![image-20230415163041295](Hadoop之HA-Hadoop.assets/image-20230415163041295.png)
+![image-20230415163041295](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916609.png)
 
 
 
@@ -563,6 +563,6 @@ hadoop jar hadoop-mapreduce-examples-2.7.3.jar pi 2 1000
 #运行使用蒙地卡罗法计算PI的示例程序
 ```
 
-![image-20230415163309918](Hadoop之HA-Hadoop.assets/image-20230415163309918.png)
+![image-20230415163309918](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916611.png)
 
-![image-20230415163327528](Hadoop之HA-Hadoop.assets/image-20230415163327528.png)
+![image-20230415163327528](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311916612.png)

@@ -2,7 +2,7 @@
 
 ## 熟悉常用的HDFS操作
 
-![image-20230421112804665](Hadoop HA使用.assets/image-20230421112804665.png)
+![image-20230421112804665](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915286.png)
 
 
 
@@ -14,7 +14,7 @@ hadoop fs -ls /
 hadoop fs -touchz file1.txt
 ```
 
-![image-20230421114122921](Hadoop HA使用.assets/image-20230421114122921.png)
+![image-20230421114122921](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915288.png)
 
 ```shell
 hadoop fs -appendToFile /home/admin/file1.txt /user/admin/file1.txt
@@ -29,7 +29,7 @@ hadoop fs -appendToFile /home/admin/file1.txt /user/admin/file1.txt
 hadoop fs -get /user/admin/file1.txt /home/admin/
 ```
 
-![image-20230421114210236](Hadoop HA使用.assets/image-20230421114210236.png)
+![image-20230421114210236](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915289.png)
 
 (3）将HDFS中指定文件的内容输出到终端中;
 例如:查看打印HDFS中指定文件`file1.txt`的内容
@@ -39,7 +39,7 @@ hadoop fs -cat /user/admin/file1.txt
 hadoop fs -text /user/admin/file1.txt
 ```
 
-![image-20230421114903407](Hadoop HA使用.assets/image-20230421114903407.png)
+![image-20230421114903407](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915290.png)
 
 (4）显示HDFS中指定的文件的读写权限、大小、创建时间、路径等信息;
 
@@ -51,7 +51,7 @@ hadoop fs -du -s /user/admin/file1.txt
 hadoop fs -du -h /user/admin/file1.txt
 ```
 
-![image-20230421115309498](Hadoop HA使用.assets/image-20230421115309498.png)
+![image-20230421115309498](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915291.png)
 
 (5）给定HDFS中某一个目录，输出该目录下的所有文件的读写权限、大小、创建时间、路径等信息，如果该文件是目录，则递归输出该目录下所有文件相关信息;
 例如:
@@ -80,7 +80,7 @@ hadoop fs -ls /user/admin/dir1
 hadoop fs -ls -R /user/admin/dir1
 ```
 
-![image-20230421115748152](Hadoop HA使用.assets/image-20230421115748152.png)
+![image-20230421115748152](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915292.png)
 
 (6）提供一个HDFS内的文件的路径，对该文件进行创建和删除操作。如果文件所在目录不存在，则自动创建目录;
 例如:HDFS内的文件`file4.txt`，指定路径为`/dir1/dir3`
@@ -90,7 +90,7 @@ hadoop fs -mkdir /user/admin/dir1/dir3
 hadoop fs -touchz /user/admin/dir1/dir3/file4.txt
 ```
 
-![image-20230421143258494](Hadoop HA使用.assets/image-20230421143258494.png)
+![image-20230421143258494](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915293.png)
 
 (7)提供一个HDFS的目录的路径，对该目录进行创建和删除操作。创建目录时，如果目录文件所在目录不存在则自动创建相应目录;删除目录时，由用户指定当该目录不为空时是否还删除该目录;
 例如:HDFS内的目录`dir4`，指定路径为`/dir1/`，在HDFS中`/dir1/dir4`目录下新建文件`file5.txt`
@@ -102,7 +102,7 @@ hadoop fs -rm /user/admin/dir1/dir4
 hadoop fs -rm -R /user/admin/dir1/dir4
 ```
 
-![image-20230421143509597](Hadoop HA使用.assets/image-20230421143509597.png)
+![image-20230421143509597](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915294.png)
 
 (8）向HDFS中指定的文件追加内容，由用户指定内容追加到原有文件的开头或结尾;
 例如:向`file5.txt`文件内追加内容`Hello Hadoop!`
@@ -113,7 +113,7 @@ hadoop fs -appendToFile /home/admin/file5.txt /user/admin/dir1/dir4/file5.txt
 hadoop fs -cat /user/admin/dir1/dir4/file5.txt
 ```
 
-![image-20230421144727639](Hadoop HA使用.assets/image-20230421144727639.png)
+![image-20230421144727639](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915295.png)
 
 
 
@@ -135,7 +135,7 @@ mkdir ~/file
 ls
 ```
 
-![image-20230421144910202](Hadoop HA使用.assets/image-20230421144910202.png)
+![image-20230421144910202](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915296.png)
 
 接着创建两个文本文件`file1.txt`和`file2.txt`。
 使`file1.txt`内容为`Hello World`，而`file2.txt`的内容为`Hello Hadoop`。
@@ -149,7 +149,7 @@ cat file1.txt
 cat file2.txt
 ```
 
-![image-20230421145047880](Hadoop HA使用.assets/image-20230421145047880.png)
+![image-20230421145047880](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915297.png)
 
 **在HDFS上创建输入文件夹**
 
@@ -157,7 +157,7 @@ cat file2.txt
 hadoop fs -mkdir input
 ```
 
-![image-20230421145133641](Hadoop HA使用.assets/image-20230421145133641.png)
+![image-20230421145133641](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915298.png)
 
 **上传本地file 中文件到集群的input目录下**
 
@@ -166,13 +166,13 @@ hadoop fs -put ~/file/file*.txt input
 hadoop fs -ls input
 ```
 
-![image-20230421145238881](Hadoop HA使用.assets/image-20230421145238881.png)
+![image-20230421145238881](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915299.png)
 
 #### 上传jar包
 
 先使用**Xftp**工具把**WordCount**的**jar**执行程序包，上传到`~/hadoop/hadoop-2.7.3/share/hadoop/mapreduce`
 
-![image-20230421150523882](Hadoop HA使用.assets/image-20230421150523882.png)
+![image-20230421150523882](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915300.png)
 
 ### 示例运行
 
@@ -187,9 +187,9 @@ hadoop jar ~/hadoop/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-0.20.2-examples.j
 
 **MapReduce执行过程显示信息**
 
-![image-20230421145834981](Hadoop HA使用.assets/image-20230421145834981.png)
+![image-20230421145834981](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915301.png)
 
-![image-20230421145847435](Hadoop HA使用.assets/image-20230421145847435.png)
+![image-20230421145847435](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915302.png)
 
 
 
@@ -201,7 +201,7 @@ hadoop jar ~/hadoop/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-0.20.2-examples.j
    hadoop fs -ls output
    ```
 
-![image-20230421150103798](Hadoop HA使用.assets/image-20230421150103798.png)
+![image-20230421150103798](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915303.png)
 
 2. 查看结果输出文件内容
 
@@ -209,7 +209,7 @@ hadoop jar ~/hadoop/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-0.20.2-examples.j
    hadoop fs -cat output/part-r-00000
    ```
 
-![image-20230421150224611](Hadoop HA使用.assets/image-20230421150224611.png)
+![image-20230421150224611](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915304.png)
 
 **完成测试数据统计**
 参照前面运行示例，请将测试数据上传至hadoop集群，并启动
@@ -224,20 +224,20 @@ hadoop fs -ls lzy_in
 hadoop jar ~/hadoop/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-0.20.2-examples.jar wordcount lzy_in lzy_out
 ```
 
-![image-20230421151405518](Hadoop HA使用.assets/image-20230421151405518.png)
+![image-20230421151405518](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915305.png)
 
 ```shell
 hadoop fs -ls lzy_out
 hadoop fs -cat lzy_out/part-r-00000
 ```
 
-![image-20230421151430199](Hadoop HA使用.assets/image-20230421151430199.png)
+![image-20230421151430199](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915306.png)
 
-![image-20230421151439161](Hadoop HA使用.assets/image-20230421151439161.png)
+![image-20230421151439161](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915307.png)
 
-![image-20230421151451698](Hadoop HA使用.assets/image-20230421151451698.png)
+![image-20230421151451698](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915308.png)
 
-![image-20230421151510994](Hadoop HA使用.assets/image-20230421151510994.png)
+![image-20230421151510994](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915309.png)
 
 ## Hadoop的Web验证练习
 
@@ -245,18 +245,18 @@ hadoop fs -cat lzy_out/part-r-00000
 
 1. 查看jps进程
 
-![image-20230421151712339](Hadoop HA使用.assets/image-20230421151712339.png)
+![image-20230421151712339](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915310.png)
 
 2. 打开浏览器查看整个集群的HDFS状态:
    http://192.168.10.111:50070/
 
    http://192.168.10.111:50070/dfshealth.html#tab-overview
 
-   ![image-20230421152015327](Hadoop HA使用.assets/image-20230421152015327.png)
+   ![image-20230421152015327](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915311.png)
 
    http://192.168.10.112:50070/
 
-   ![image-20230421152340395](Hadoop HA使用.assets/image-20230421152340395.png)
+   ![image-20230421152340395](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915312.png)
 
 **ResourceManager状态查看:**
 
@@ -264,7 +264,7 @@ hadoop fs -cat lzy_out/part-r-00000
    http://192.168.10.111:8088/
    http://192.168.10.111:8088/cluster
 
-   ![image-20230421152444665](Hadoop HA使用.assets/image-20230421152444665.png)
+   ![image-20230421152444665](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915313.png)
 
 
 
@@ -272,4 +272,4 @@ hadoop fs -cat lzy_out/part-r-00000
 
 http://192.168.10.113:8042/
 
-![image-20230421152604946](Hadoop HA使用.assets/image-20230421152604946.png)
+![image-20230421152604946](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311915314.png)

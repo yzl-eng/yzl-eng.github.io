@@ -1,4 +1,4 @@
-![image-20230601170729722](MySQL数据库平台搭建.assets/image-20230601170729722.png)
+![image-20230601170729722](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922326.png)
 
 ## MySQL集群版安装环境配置
 
@@ -10,11 +10,11 @@
 mkdir setups
 ```
 
-![image-20230601164506237](MySQL数据库平台搭建.assets/image-20230601164506237.png)
+![image-20230601164506237](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922327.png)
 
 首先，我们把相关软件包上传到root用户家目录的新建`setup`目录下。
 
-![image-20230601164722483](MySQL数据库平台搭建.assets/image-20230601164722483.png)
+![image-20230601164722483](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922328.png)
 
 命令:
 
@@ -25,7 +25,7 @@ yum list installed | grep mysql
 #列出本机yum方式安装的MySQL软件
 ```
 
-![image-20230601164913360](MySQL数据库平台搭建.assets/image-20230601164913360.png)
+![image-20230601164913360](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922329.png)
 
 ```shell
 rpm -e --nodeps 软件包名
@@ -44,7 +44,7 @@ rpm -qa | grep mariadb
 
 检查是否已经安装了`MariaDB`软件，该数据库软件是`CentOS 7.2`默认自带的数据库，会与`MySQL`软件的数据库内核产生冲突，在安装`MySQL`数据库之前需要将其删除
 
-![image-20230601165030878](MySQL数据库平台搭建.assets/image-20230601165030878.png)
+![image-20230601165030878](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922330.png)
 
 ```shell
 rpm -e --nodeps mariadb-libs-5.5.56-2.el7.x86_64
@@ -52,7 +52,7 @@ rpm -e --nodeps mariadb-libs-5.5.56-2.el7.x86_64
 
 将已经安装的`MariaDB`软件删除，`rpm`源码安装删除方法
 
-![image-20230601165212800](MySQL数据库平台搭建.assets/image-20230601165212800.png)
+![image-20230601165212800](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922331.png)
 
 ```shell
 rpm -qa | grep libaio
@@ -61,7 +61,7 @@ yum list installed | grep libaio
 #MySQL数据库的安装需要依赖于该软件。
 ```
 
-![image-20230601165419928](MySQL数据库平台搭建.assets/image-20230601165419928.png)
+![image-20230601165419928](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922332.png)
 
 若该软件还没有安装，则使用此命令进行安装。`libaio-0.3.109-13.el7.x86_64.rpm`我们已存放于用户家目录的`setup`目录下。
 
@@ -84,7 +84,7 @@ useradd -r -g mysql mysql
 #若不存在则使用此命令创建mysql用户并加入到mysql用户组中，选项“-r”表示该用户是内部用户，不允许外部登录。
 ```
 
-![image-20230601165652983](MySQL数据库平台搭建.assets/image-20230601165652983.png)
+![image-20230601165652983](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922333.png)
 
 若`mysql`用户存在但不属于`mysql`用户组，则使用此命令修改`mysql`用户其所属的用户组为`mysql`。
 
@@ -100,7 +100,7 @@ sestatus -v
 
 查看当前系统中SELinux服务的运行状态，需要进行永久关闭。
 
-![image-20230601165847258](MySQL数据库平台搭建.assets/image-20230601165847258.png)
+![image-20230601165847258](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922334.png)
 
 ```shell
 vi /etc/selinux/config
@@ -110,7 +110,7 @@ vi /etc/selinux/config
 
 > SELINUX=disabled
 
-![image-20230601170025061](MySQL数据库平台搭建.assets/image-20230601170025061.png)
+![image-20230601170025061](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922335.png)
 
 ```shell
 reboot
@@ -124,7 +124,7 @@ reboot
 
 `MySQL Cluster`软件包`mysql-cluster-gpl-7.5.7-linux-glibc2.12-x86_64.tar.gz`我们已提前上传于用户家目录的`setup`目录下。
 
-![image-20230601170305065](MySQL数据库平台搭建.assets/image-20230601170305065.png)
+![image-20230601170305065](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922336.png)
 
 命令:
 
@@ -137,9 +137,9 @@ tar -xzf ~/setups/mysql-cluster-gpl-7.5.7-linux-glibc2.12-x86_64.tar.gz
 #将软件包解压到mysql目录下
 ```
 
-![image-20230601172009593](MySQL数据库平台搭建.assets/image-20230601172009593.png)
+![image-20230601172009593](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922337.png)
 
-![image-20230601171948428](MySQL数据库平台搭建.assets/image-20230601171948428.png)
+![image-20230601171948428](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922338.png)
 
 ```shell
 cd /usr/local
@@ -157,7 +157,7 @@ chown -R mysql .
 chgrp -R mysql .
 ```
 
-![image-20230601172704235](MySQL数据库平台搭建.assets/image-20230601172704235.png)
+![image-20230601172704235](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922339.png)
 
 ```shell
 vi /etc/profile
@@ -175,7 +175,7 @@ export MYSQL_CLUSTER_HOME PATH
 #必须按照前面的定义顺序书写。
 ```
 
-![image-20230601173301171](MySQL数据库平台搭建.assets/image-20230601173301171.png)
+![image-20230601173301171](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922340.png)
 
 ```shell
 source /etc/profile
@@ -185,11 +185,11 @@ echo $MYSQL_CLUSTER_HOME
 echo $PATH
 ```
 
-![image-20230601173536528](MySQL数据库平台搭建.assets/image-20230601173536528.png)
+![image-20230601173536528](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922341.png)
 
-![image-20230601173556401](MySQL数据库平台搭建.assets/image-20230601173556401.png)
+![image-20230601173556401](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922342.png)
 
-![image-20230601173614923](MySQL数据库平台搭建.assets/image-20230601173614923.png)
+![image-20230601173614923](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922343.png)
 
 
 
@@ -209,7 +209,7 @@ chown -R mysql mysql-cluster
 chgrp -R mysql mysql-cluster
 ```
 
-![image-20230601174245887](MySQL数据库平台搭建.assets/image-20230601174245887.png)
+![image-20230601174245887](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922344.png)
 
 ```shell
 mkdir etc
@@ -254,7 +254,7 @@ NodeId=5
 HostName=LZY-05
 ```
 
-![image-20230601175721551](MySQL数据库平台搭建.assets/image-20230601175721551.png)
+![image-20230601175721551](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922345.png)
 
 ```shell
 chown -R mysql .
@@ -264,7 +264,7 @@ ndb_mgmd -f /usr/local/mysql/etc/config.ini --initial
 #启动MySQL Cluster的管理节点
 ```
 
-![image-20230601175810793](MySQL数据库平台搭建.assets/image-20230601175810793.png)
+![image-20230601175810793](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922346.png)
 
 首次启动或配置修改之后启动需要添加参数`--
 initial`，正常启动时不需要添加参数`--initial`。
@@ -280,14 +280,14 @@ ps -ef | grep ndb_mgmd
 #查看系统进程信息，若存在信息中包含“ndb_mgmd关键字的进程则表示MySQL Cluster的管理节点启动成功。
 ```
 
-![image-20230601180048097](MySQL数据库平台搭建.assets/image-20230601180048097.png)
+![image-20230601180048097](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922347.png)
 
 ```shell
 ndb_mgm
 #进入MySQL Cluster管理节点的控制台
 ```
 
-![image-20230601180111776](MySQL数据库平台搭建.assets/image-20230601180111776.png)
+![image-20230601180111776](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922348.png)
 
 ```shell
 #在控制台中使用命令show可以查看节点状况。
@@ -296,7 +296,7 @@ exit
 #在控制台中使用命令exit可以退出控制
 ```
 
-![image-20230601180140140](MySQL数据库平台搭建.assets/image-20230601180140140.png)
+![image-20230601180140140](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922349.png)
 
 
 
@@ -324,7 +324,7 @@ ndb-connectstring=LZY-01 #指定管理节点地址
 ndb-connectstring=LZY-01
 ```
 
-![image-20230601181125130](MySQL数据库平台搭建.assets/image-20230601181125130.png)
+![image-20230601181125130](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922350.png)
 
 ```shell
 ndbd --initial
@@ -337,9 +337,9 @@ ndbd --initial
 ndbd
 ```
 
-![image-20230601181241428](MySQL数据库平台搭建.assets/image-20230601181241428.png)
+![image-20230601181241428](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922351.png)
 
-![image-20230601181255641](MySQL数据库平台搭建.assets/image-20230601181255641.png)
+![image-20230601181255641](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922352.png)
 
 ```shell
 ps -ef | grep ndbd
@@ -347,18 +347,18 @@ ps -ef | grep ndbd
 
 查看系统进程信息，若存在信息中包含`ndbd`关键字的进程则表示`MySQL Cluster`的**数据服务节点**启动成功。
 
-![image-20230601181357488](MySQL数据库平台搭建.assets/image-20230601181357488.png)
+![image-20230601181357488](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922353.png)
 
-![image-20230601181407919](MySQL数据库平台搭建.assets/image-20230601181407919.png)
+![image-20230601181407919](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922354.png)
 
 ```shell
 ndb_mgm
 #在管理节点主机上使用命令“ndb_mgm”进入MySQL Cluster管理节点的控制台。
 ```
 
-![image-20230601181526463](MySQL数据库平台搭建.assets/image-20230601181526463.png)
+![image-20230601181526463](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922355.png)
 
-![image-20230601181537757](MySQL数据库平台搭建.assets/image-20230601181537757.png)
+![image-20230601181537757](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922356.png)
 
 ```shell
 show
@@ -366,7 +366,7 @@ show
 exit
 ```
 
-![image-20230601181608735](MySQL数据库平台搭建.assets/image-20230601181608735.png)
+![image-20230601181608735](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922357.png)
 
 
 
@@ -397,7 +397,7 @@ ndb-connectstring=LZY-01
 ndb-connectstring=LZY-01
 ```
 
-![image-20230601184129117](MySQL数据库平台搭建.assets/image-20230601184129117.png)
+![image-20230601184129117](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922358.png)
 
 ```shell
 mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
@@ -407,11 +407,11 @@ mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local
 `[Note] A temporary password isgenerated for root@localhost:XXXXXXXXXXXXXX`
 信息末尾的`XxXXXXXXXXXXXX`安装程序随机生成的**初始密码**，在首次以root用户登录数据库时需要使用，**非常重要，一定要记下。**
 
-![image-20230601182649159](MySQL数据库平台搭建.assets/image-20230601182649159.png)
+![image-20230601182649159](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922359.png)
 
 m5dle8Os(V*J
 
-![image-20230601182731813](MySQL数据库平台搭建.assets/image-20230601182731813.png)
+![image-20230601182731813](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922360.png)
 
 y!j)-fRp!4e#
 
@@ -424,9 +424,9 @@ ps -ef | grep mysql
 #查看系统进程信息，若存在信息中包含“mysq关键字的进程则表示MySQLCluster的SQL服务节点启动成功。
 ```
 
-![image-20230601182843068](MySQL数据库平台搭建.assets/image-20230601182843068.png)
+![image-20230601182843068](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922361.png)
 
-![image-20230601182858807](MySQL数据库平台搭建.assets/image-20230601182858807.png)
+![image-20230601182858807](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922362.png)
 
 
 
@@ -444,7 +444,7 @@ show
 exit
 ```
 
-![image-20230601184302600](MySQL数据库平台搭建.assets/image-20230601184302600.png)
+![image-20230601184302600](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922363.png)
 
 注意:只有本步骤的验证是在集群中管理节点主机上进行操作，之后的操作仍然是在SQL服务节点主机继续操作。
 
@@ -463,7 +463,7 @@ SET PASSWORD=PASSWORD('123456');
 在MySQL控制台使用此命令，重新设置数据库的“root用户的登录密码，其中`123456`部分为自定义的新密码。
 多个SQL服务节点的root用户密码不需要设置为相同密码。
 
-![image-20230601185126148](MySQL数据库平台搭建.assets/image-20230601185126148.png)
+![image-20230601185126148](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922364.png)
 
 ```shell
 USE mysql;
@@ -477,7 +477,7 @@ FLUSH PRIVILEGES;
 exit
 ```
 
-![image-20230601185303541](MySQL数据库平台搭建.assets/image-20230601185303541.png)
+![image-20230601185303541](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922365.png)
 
 
 
@@ -489,7 +489,7 @@ firewall-cmd --reload
 #重启系统防火墙服务，使新添加的端口策略生效。
 ```
 
-![image-20230601185533226](MySQL数据库平台搭建.assets/image-20230601185533226.png)
+![image-20230601185533226](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922366.png)
 
 
 
@@ -506,7 +506,7 @@ CREATE DATABASE test;
 #在MySQL控制台使用命令CREATEDATABASE test;创建数据库test。
 ```
 
-![image-20230601200746983](MySQL数据库平台搭建.assets/image-20230601200746983.png)
+![image-20230601200746983](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922368.png)
 
 ```shell
 mysql -u root -p
@@ -520,7 +520,7 @@ SHOW DATABASES;
 
 在MySQL控制台使用命令`SHOW DATABASES;`显示数据库列表，若存在名为`test`的数据库，则表示集群同步数据成功。
 
-![image-20230601200758509](MySQL数据库平台搭建.assets/image-20230601200758509.png)
+![image-20230601200758509](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922369.png)
 
 可以使用命令`ssh目标主机名P地址`远程登录到集群中其它sQL服务节点主机进行操作，完成所有操作后使用命令`logout`退出当前登录。
 
@@ -586,11 +586,11 @@ INSERT INTO ctest2 () VALUES (1);
 SELECT * FROM ctest2;
 ```
 
-![image-20230601201008225](MySQL数据库平台搭建.assets/image-20230601201008225.png)
+![image-20230601201008225](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922370.png)
 
 然后在SQL节点2上看数据是否同步过来了
 
-![image-20230601201120491](MySQL数据库平台搭建.assets/image-20230601201120491.png)
+![image-20230601201120491](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922371.png)
 
 ### 测试二
 关闭一个数据节点，在另外一个节点写输入，开启关闭的节点，看数据是否同步过来。
@@ -607,7 +607,7 @@ INSERT INTO ctest2 () VALUES (3333);
 SELECT * FROM ctest2;
 ```
 
-![image-20230601201516007](MySQL数据库平台搭建.assets/image-20230601201516007.png)
+![image-20230601201516007](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922372.png)
 
 等数据节点1启动完毕，启动数据节点1的服务
 
@@ -625,4 +625,4 @@ service mysqld start
 
 可以看到数据已经同步过来了，说明数据可以双向同步了。
 
-![image-20230601201756938](MySQL数据库平台搭建.assets/image-20230601201756938.png)
+![image-20230601201756938](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922373.png)

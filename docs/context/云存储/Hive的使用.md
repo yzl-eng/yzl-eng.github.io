@@ -54,7 +54,7 @@ set hive.enforce.bucketing=true;
 </property>
 ```
 
-![image-20230621170747158](Hive的使用.assets/image-20230621170747158.png)
+![image-20230621170747158](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920500.png)
 
 
 
@@ -79,7 +79,7 @@ drop database test1;
 
 ```
 
-![image-20230621171010064](Hive的使用.assets/image-20230621171010064.png)
+![image-20230621171010064](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920501.png)
 
 ### Hive的数据模型_内部表
 
@@ -103,7 +103,7 @@ create table t3(tid int, tname string, age int) row format delimited fields term
 create table t4 as select * from t1;
 ```
 
-![image-20230621171223178](Hive的使用.assets/image-20230621171223178.png)
+![image-20230621171223178](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920502.png)
 
 ```shell
 hadoop fs -ls /user/hive/warehouse/
@@ -112,7 +112,7 @@ hadoop fs -ls /user/hive/warehouse/test2.db/t1
 hadoop fs -ls /mytable/hive/
 ```
 
-![image-20230621171439407](Hive的使用.assets/image-20230621171439407.png)
+![image-20230621171439407](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920503.png)
 
 ```shell
 hive
@@ -123,7 +123,7 @@ desc t1;
 drop table t1;
 ```
 
-![image-20230621171641554](Hive的使用.assets/image-20230621171641554.png)
+![image-20230621171641554](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920504.png)
 
 ```shell
 hdfs dfs -ls /user/hive/warehouse/test2.db
@@ -145,13 +145,13 @@ use test4;
 create table sampledata (sid int, sname string, gender string, language int,math int, english int) row format delimited fields terminated by ',' stored as textfile;
 ```
 
-![image-20230621171842819](Hive的使用.assets/image-20230621171842819.png)
+![image-20230621171842819](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920505.png)
 
 准备文本数据:
 
 在admin用户家目录下新建sampledata.txt内容:
 
-![image-20230621145339382](Hive的使用.assets/image-20230621145339382.png)
+![image-20230621145339382](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920506.png)
 
 将文本数据插入到数据表:
 
@@ -160,7 +160,7 @@ load data local inpath '/home/admin/sampledata.txt' into table sampledata;
 select * from sampledata;
 ```
 
-![image-20230621172010431](Hive的使用.assets/image-20230621172010431.png)
+![image-20230621172010431](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920507.png)
 
 创建分区表：
 
@@ -169,7 +169,7 @@ create table partition_table(sid int, sname string) partitioned by (gender strin
 select * from partition_table;
 ```
 
-![image-20230621172045345](Hive的使用.assets/image-20230621172045345.png)
+![image-20230621172045345](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920508.png)
 
 向分区表中插入数据：
 
@@ -180,13 +180,13 @@ select * from partition_table;
 show partitions partition_table;
 ```
 
-![image-20230621172321387](Hive的使用.assets/image-20230621172321387.png)
+![image-20230621172321387](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920509.png)
 
 登录http://192.168.10.111:8088/cluster/apps可以查看job执行状态
 
-![image-20230621172242659](Hive的使用.assets/image-20230621172242659.png)
+![image-20230621172242659](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920510.png)
 
-![image-20230621172347019](Hive的使用.assets/image-20230621172347019.png)
+![image-20230621172347019](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920511.png)
 
 ### Hive的数据模型_外部表
 
@@ -214,7 +214,7 @@ student3.txt内容：
 5,Mike,F,99,98,98
 ```
 
-![image-20230621172606186](Hive的使用.assets/image-20230621172606186.png)
+![image-20230621172606186](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920512.png)
 
 ```shell
 hdfs dfs -ls /
@@ -231,7 +231,7 @@ hdfs dfs -put student2.txt /input
 hdfs dfs -put student3.txt /input
 ```
 
-![image-20230621172655849](Hive的使用.assets/image-20230621172655849.png)
+![image-20230621172655849](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920513.png)
 
 ```shell
 hive
@@ -251,7 +251,7 @@ create table external_student (sid int, sname string, gender string, language in
 select * from external_student;
 ```
 
-![image-20230621172838393](Hive的使用.assets/image-20230621172838393.png)
+![image-20230621172838393](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920514.png)
 
 删除HDFS上的student1.txt
 
@@ -260,7 +260,7 @@ exit;
 hdfs dfs -rm /input/student1.txt
 ```
 
-![image-20230621172936721](Hive的使用.assets/image-20230621172936721.png)
+![image-20230621172936721](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920515.png)
 
 查询外部表
 
@@ -270,7 +270,7 @@ use test5;
 select * from external_student;
 ```
 
-![image-20230621173038866](Hive的使用.assets/image-20230621173038866.png)
+![image-20230621173038866](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920516.png)
 
 将student1.txt 重新放入HDFS input目录下
 
@@ -287,7 +287,7 @@ use test5;
 select * from external_student;
 ```
 
-![image-20230621173149489](Hive的使用.assets/image-20230621173149489.png)
+![image-20230621173149489](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920517.png)
 
 ### Hive的数据模型_桶表
 
@@ -323,16 +323,16 @@ select * from bucket_table;
 insert overwrite table bucket_table SELECT * FROM users;
 ```
 
-![image-20230621173625450](Hive的使用.assets/image-20230621173625450.png)
+![image-20230621173625450](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920518.png)
 
 ```shell
 exit;
 hadoop fs -ls /user/hive/warehouse/test6.db/bucket_table/ 
 ```
 
-![image-20230621173823156](Hive的使用.assets/image-20230621173823156.png)
+![image-20230621173823156](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920519.png)
 
-![image-20230621173854437](Hive的使用.assets/image-20230621173854437.png)
+![image-20230621173854437](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920520.png)
 
 ### Hive的数据模型_视图
 
@@ -349,7 +349,7 @@ create table test01 (id int, name string) row format delimited fields terminated
 desc test01;
 ```
 
-![image-20230621173947595](Hive的使用.assets/image-20230621173947595.png)
+![image-20230621173947595](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920521.png)
 
 ```shell
 exit;
@@ -358,7 +358,7 @@ vi data1.txt
 2,jack
 ```
 
-![image-20230621174034994](Hive的使用.assets/image-20230621174034994.png)
+![image-20230621174034994](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920522.png)
 
 ```shell
 hive
@@ -367,7 +367,7 @@ load data local inpath '/home/admin/data1.txt' overwrite into table test01;
 select * from test01;
 ```
 
-![image-20230621174248963](Hive的使用.assets/image-20230621174248963.png)
+![image-20230621174248963](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920523.png)
 
 创建一个View之前，使用explain命令查看创建View的命令是如何被Hive解释执行的：
 
@@ -375,7 +375,7 @@ select * from test01;
 explain create view test_view (id, name_length) as  select id, length(name) from test01;
 ```
 
-![image-20230621174309138](Hive的使用.assets/image-20230621174309138.png)
+![image-20230621174309138](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920524.png)
 
 实际创建一个View：
 
@@ -390,9 +390,9 @@ explain select sum(name_length) from test_view;
 explain extended select sum(name_length) from test_view;
 ```
 
-![image-20230621174336537](Hive的使用.assets/image-20230621174336537.png)
+![image-20230621174336537](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920525.png)
 
-![image-20230621174356059](Hive的使用.assets/image-20230621174356059.png)
+![image-20230621174356059](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920526.png)
 
 最后，对View执行一次查询，显示Stage-1阶段对原始表test进行了MapReduce过程：
 
@@ -400,4 +400,4 @@ explain extended select sum(name_length) from test_view;
 select sum(name_length) from test_view;
 ```
 
-![image-20230621174552431](Hive的使用.assets/image-20230621174552431.png)
+![image-20230621174552431](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311920527.png)

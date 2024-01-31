@@ -26,9 +26,9 @@ start-hbase.sh
 jps
 ```
 
-![image-20230512110055076](Hbase使用.assets/image-20230512110055076.png)
+![image-20230512110055076](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919731.png)
 
-![image-20230512110039077](Hbase使用.assets/image-20230512110039077.png)
+![image-20230512110039077](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919733.png)
 
 
 
@@ -57,7 +57,7 @@ hbase shell
 #进入Habase命令界面
 ```
 
-![image-20230512110409987](Hbase使用.assets/image-20230512110409987.png)
+![image-20230512110409987](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919734.png)
 
 #### 新建表空间
 
@@ -68,7 +68,7 @@ drop_namespace 'testDB'
 #表空间为空才能删除
 ```
 
-![image-20230512110516136](Hbase使用.assets/image-20230512110516136.png)
+![image-20230512110516136](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919735.png)
 
 
 
@@ -88,7 +88,7 @@ hadoop fs -ls hbase/data/hbase
 hadoop fs -ls hbase/data/hbase/meta
 ```
 
-![image-20230512111109002](Hbase使用.assets/image-20230512111109002.png)
+![image-20230512111109002](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919736.png)
 
 #### 建立一个表和列族（默认表空间）
 
@@ -103,19 +103,19 @@ create 'scores', 'grade', 'course'
 list
 ```
 
-![image-20230512111205820](Hbase使用.assets/image-20230512111205820.png)
+![image-20230512111205820](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919737.png)
 
 ```shell
 describe 'scores'
 ```
 
-![image-20230512111240196](Hbase使用.assets/image-20230512111240196.png)
+![image-20230512111240196](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919738.png)
 
 ```shell
 create 'testDB:scores' , 'grade', 'course'
 ```
 
-![image-20230512111318992](Hbase使用.assets/image-20230512111318992.png)
+![image-20230512111318992](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919739.png)
 
 
 
@@ -132,7 +132,7 @@ put 'scores','Jim','course:','90'
 put 'scores','Jim','course:','91'
 ```
 
-![image-20230512111348045](Hbase使用.assets/image-20230512111348045.png)
+![image-20230512111348045](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919740.png)
 
 
 
@@ -155,7 +155,7 @@ get 'scores','Jim','grade'
 
 HBase的shell操作，一个大概顺序就是操作关键词后跟**表名，行名，列名**这样的一个顺序，如果有其他条件再用花括号加上
 
-![image-20230512111438162](Hbase使用.assets/image-20230512111438162.png)
+![image-20230512111438162](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919741.png)
 
 练习:
 
@@ -165,9 +165,9 @@ get 'scores', 'Tom'
 get 'Jim'
 ```
 
-![image-20230512111550006](Hbase使用.assets/image-20230512111550006.png)
+![image-20230512111550006](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919742.png)
 
-![image-20230512111533875](Hbase使用.assets/image-20230512111533875.png)
+![image-20230512111533875](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919743.png)
 
 #### 扫描所有数据
 
@@ -175,7 +175,7 @@ get 'Jim'
 scan 'scores'
 ```
 
-![image-20230512111701579](Hbase使用.assets/image-20230512111701579.png)
+![image-20230512111701579](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919744.png)
 
 **扫描指定列**
 
@@ -183,7 +183,7 @@ scan 'scores'
 scan 'scores',{COLUMNS => ['grade']}
 ```
 
-![image-20230512111723341](Hbase使用.assets/image-20230512111723341.png)
+![image-20230512111723341](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919745.png)
 
 练习：
 
@@ -199,7 +199,7 @@ scan 'scores',['grade']
 count 'scores'
 ```
 
-![image-20230512111835701](Hbase使用.assets/image-20230512111835701.png)
+![image-20230512111835701](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919746.png)
 
 
 
@@ -213,7 +213,7 @@ get 'scores','Jim'
 
 如果需要进行全表删除操作，就使用`truncate`命令，其实没有直接的全表删除命令，这个命令也是`disable`，`drop`，`create`三个命令组合出来的。
 
-![image-20230512111945962](Hbase使用.assets/image-20230512111945962.png)
+![image-20230512111945962](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919747.png)
 
 练习:
 
@@ -222,7 +222,7 @@ delete 'scores','Jim','course:'
 get 'scores','Jim'
 ```
 
-![image-20230512112042585](Hbase使用.assets/image-20230512112042585.png)
+![image-20230512112042585](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919748.png)
 
 
 
@@ -236,7 +236,7 @@ get 'scores','Jim'
 
 `deleteall`命令，可以进行整行的范围的删除操作，谨慎使用。
 
-![image-20230512112129029](Hbase使用.assets/image-20230512112129029.png)
+![image-20230512112129029](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919749.png)
 
 练习:
 
@@ -245,7 +245,7 @@ deleteall 'scores', 'Tom'
 scan 'scores'
 ```
 
-![image-20230512112403778](Hbase使用.assets/image-20230512112403778.png)
+![image-20230512112403778](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919750.png)
 
 #### 将整张表清空
 
@@ -254,7 +254,7 @@ truncate 'scores'
 list
 ```
 
-![image-20230512112500271](Hbase使用.assets/image-20230512112500271.png)
+![image-20230512112500271](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919751.png)
 
 
 
@@ -280,9 +280,9 @@ list
    list
    ```
 
-   ![image-20230512112635422](Hbase使用.assets/image-20230512112635422.png)
+   ![image-20230512112635422](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919752.png)
 
-   ![image-20230512112716515](Hbase使用.assets/image-20230512112716515.png)
+   ![image-20230512112716515](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919753.png)
 
 
 
@@ -294,17 +294,17 @@ drop 'testDB:scores'
 scan 'testDB:scores'
 ```
 
-![image-20230512112908864](Hbase使用.assets/image-20230512112908864.png)
+![image-20230512112908864](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919754.png)
 
 
 
-![image-20230512105720291](Hbase使用.assets/image-20230512105720291.png)
+![image-20230512105720291](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919755.png)
 
 
 
 ## 作业 
 
-![image-20230512105739324](Hbase使用.assets/image-20230512105739324.png)
+![image-20230512105739324](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919756.png)
 
 
 
@@ -339,7 +339,7 @@ put 'lzy_20200802050211','lzy','course:daolun','100'
 scan 'lzy_20200802050211'
 ```
 
-![image-20230512114856810](Hbase使用.assets/image-20230512114856810.png)
+![image-20230512114856810](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919757.png)
 
 ```shell
 disable 'lzy_20200802050211'
@@ -386,7 +386,7 @@ put 'lzy_11','5','course:daolun','100'
 scan 'lzy_11'
 ```
 
-![image-20230512115626797](Hbase使用.assets/image-20230512115626797.png)
+![image-20230512115626797](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311919758.png)
 
 
 

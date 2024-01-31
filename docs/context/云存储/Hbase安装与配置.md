@@ -13,7 +13,7 @@ tar -xzf ~/setups/hbase-1.2.3-bin.tar.gz
 #将软件包解压到hbase目录
 ```
 
-![image-20230507214231838](Hbase安装与配置.assets/image-20230507214231838.png)
+![image-20230507214231838](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918579.png)
 
 
 
@@ -23,7 +23,7 @@ vi ~/.bash_profile
 #配置HBase相关的环境变量
 ```
 
-![image-20230507214538793](Hbase安装与配置.assets/image-20230507214538793.png)
+![image-20230507214538793](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918580.png)
 
 在文件末尾添加以下内容:
 
@@ -37,7 +37,7 @@ export HBASE_HOME PATH
 #必须按照前面的定义顺序书写
 ```
 
-![image-20230507214700789](Hbase安装与配置.assets/image-20230507214700789.png)
+![image-20230507214700789](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918581.png)
 
 ```shell
 source ~/.bash_profile
@@ -49,7 +49,7 @@ echo $PATH
 hbase version
 ```
 
-![image-20230507214845236](Hbase安装与配置.assets/image-20230507214845236.png)
+![image-20230507214845236](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918582.png)
 
 ## HBase高可用完全分布模式配置
 
@@ -65,7 +65,7 @@ cd ~/hbase/hbase-1.2.3/conf
 ls
 ```
 
-![image-20230507215027780](Hbase安装与配置.assets/image-20230507215027780.png)
+![image-20230507215027780](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918583.png)
 
 
 
@@ -84,7 +84,7 @@ export JAVA_HOME=/home/admin/java/jdk1.8.0_131
 
 该路径以JDK软件包实际解压解包的路径为准
 
-![image-20230507215219153](Hbase安装与配置.assets/image-20230507215219153.png)
+![image-20230507215219153](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918584.png)
 
 找到配置项`HBASE_CLASSPATH`，该项用于指定Hadoop的配置文件所在的路径，将其值改为以下内容:
 
@@ -92,7 +92,7 @@ export JAVA_HOME=/home/admin/java/jdk1.8.0_131
 export HBASE_CLASSPATH=/home/admin/hadoop/hadoop-2.7.3/etc/hadoop
 ```
 
-![image-20230507215355280](Hbase安装与配置.assets/image-20230507215355280.png)
+![image-20230507215355280](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918585.png)
 
 找到配置项`HBASE_LOG_DIR`，该项用于指定HBase的日志文件的本地存放路径，将其值改为以下内容:
 
@@ -100,7 +100,7 @@ export HBASE_CLASSPATH=/home/admin/hadoop/hadoop-2.7.3/etc/hadoop
 export HBASE_LOG_DIR=/home/admin/hbase/logs
 ```
 
-![image-20230507215516159](Hbase安装与配置.assets/image-20230507215516159.png)
+![image-20230507215516159](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918586.png)
 
 找到配置项`HBASE_MANAGES_ZK`，该项用于关闭HBase自带的Zookeeper组件，将其值改为以下内容:
 
@@ -108,14 +108,14 @@ export HBASE_LOG_DIR=/home/admin/hbase/logs
 export HBASE_MANAGES_ZK=false
 ```
 
-![image-20230507215615041](Hbase安装与配置.assets/image-20230507215615041.png)
+![image-20230507215615041](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918587.png)
 
 ```shell
 vi hbase-site.xml
 #对配置文件进行修改
 ```
 
-![image-20230507215716843](Hbase安装与配置.assets/image-20230507215716843.png)
+![image-20230507215716843](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918588.png)
 
 找到标签`<configuration>`所在的位置，在其中添加如下内容:
 
@@ -145,7 +145,7 @@ vi hbase-site.xml
 </configuration>
 ```
 
-![image-20230507215903246](Hbase安装与配置.assets/image-20230507215903246.png)
+![image-20230507215903246](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918589.png)
 
 ```shell
 vi regionservers
@@ -162,7 +162,7 @@ LZY-04
 LZY-05
 ```
 
-![image-20230507215948429](Hbase安装与配置.assets/image-20230507215948429.png)
+![image-20230507215948429](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918590.png)
 
 ```shell
 touch backup-masters
@@ -171,7 +171,7 @@ vi backup-masters
 #对配置文件进行修改
 ```
 
-![image-20230507220050306](Hbase安装与配置.assets/image-20230507220050306.png)
+![image-20230507220050306](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918591.png)
 
 添加集群中所有备用主节点的主机名，每行一个主机的主机名，配置格式如下:
 
@@ -179,7 +179,7 @@ vi backup-masters
 LZY-02
 ```
 
-![image-20230507220133767](Hbase安装与配置.assets/image-20230507220133767.png)
+![image-20230507220133767](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918592.png)
 
 ## 同步安装配置以及系统时间
 
@@ -192,7 +192,7 @@ scp -r ~/hbase ~/.bash_profile admin@LZY-04:/home/admin
 scp -r ~/hbase ~/.bash_profile admin@LZY-05:/home/admin
 ```
 
-![image-20230507220416202](Hbase安装与配置.assets/image-20230507220416202.png)
+![image-20230507220416202](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918593.png)
 
 集群中每台主机分别进行以下命令操作:
 
@@ -206,9 +206,9 @@ hbase version
 #验证Hbas的安装配置是否成功
 ```
 
-![image-20230507220541066](Hbase安装与配置.assets/image-20230507220541066.png)
+![image-20230507220541066](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918594.png)
 
-![image-20230507220619948](Hbase安装与配置.assets/image-20230507220619948.png)
+![image-20230507220619948](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918595.png)
 
 
 
@@ -224,7 +224,7 @@ hwclock -w
 #将设置的时间同步到硬件时钟
 ```
 
-![image-20230507221037489](Hbase安装与配置.assets/image-20230507221037489.png)
+![image-20230507221037489](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918596.png)
 
 
 
@@ -256,15 +256,15 @@ yarn-daemon.sh start resourcemanager
 start-hbase.sh
 ```
 
-![image-20230507221753111](Hbase安装与配置.assets/image-20230507221753111.png)
+![image-20230507221753111](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918597.png)
 
 ```shell
 jps
 ```
 
-![image-20230507223523286](Hbase安装与配置.assets/image-20230507223523286.png)
+![image-20230507223523286](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918598.png)
 
-![image-20230507223551405](Hbase安装与配置.assets/image-20230507223551405.png)
+![image-20230507223551405](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918599.png)
 
 
 
@@ -290,7 +290,7 @@ start-hbase.sh
 hbase shell
 ```
 
-![image-20230507224032112](Hbase安装与配置.assets/image-20230507224032112.png)
+![image-20230507224032112](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918600.png)
 
 ```shell
 create 'tab', 'id', 'name'
@@ -299,4 +299,4 @@ exit
 #在控制台中使用命令“exit’退出控制台返回系统命令界面。
 ```
 
-![image-20230507224055678](Hbase安装与配置.assets/image-20230507224055678.png)
+![image-20230507224055678](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311918601.png)

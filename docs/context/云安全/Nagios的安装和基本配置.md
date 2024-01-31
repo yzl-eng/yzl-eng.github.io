@@ -13,11 +13,11 @@ mkdir /media/cdrom/
 # df /media/cdrom
 ```
 
-![image-20230511181703206](Nagios的安装和基本配置.assets/image-20230511181703206.png)
+![image-20230511181703206](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909710.png)
 
 2.挂载光盘
 
-![image-20230516172241223](Nagios的安装和基本配置.assets/image-20230516172241223.png)
+![image-20230516172241223](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909711.png)
 
 
 
@@ -25,7 +25,7 @@ mkdir /media/cdrom/
 mount /dev/cdrom /media/cdrom
 ```
 
-![image-20230516172149082](Nagios的安装和基本配置.assets/image-20230516172149082.png)
+![image-20230516172149082](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909712.png)
 
 3.查看挂载记录
 
@@ -33,7 +33,7 @@ mount /dev/cdrom /media/cdrom
 df -hT /media/cdrom
 ```
 
-![image-20230516172212198](Nagios的安装和基本配置.assets/image-20230516172212198.png)
+![image-20230516172212198](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909713.png)
 
 4. 备份原本地源
 
@@ -149,7 +149,7 @@ firewall-cmd --reloadl
 yum -y install gcc glibc glibc-common php php-gd perl httpd gd gd-devel openssl openssl-devel
 ```
 
-![image-20230516173529008](Nagios的安装和基本配置.assets/image-20230516173529008.png)
+![image-20230516173529008](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909714.png)
 
 创建ngaios用户和组
 
@@ -163,7 +163,7 @@ usermod -a -G nagcmd apache
 
 传入文件到指定目录
 
-![image-20230516174054361](Nagios的安装和基本配置.assets/image-20230516174054361.png)
+![image-20230516174054361](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909715.png)
 
 安装Nagios
 
@@ -173,7 +173,7 @@ tar zxvf nagios-4.3.1.tar.gz
 cd nagios-4.3.1
 ```
 
-![image-20230516174139486](Nagios的安装和基本配置.assets/image-20230516174139486.png)
+![image-20230516174139486](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909716.png)
 
 
 
@@ -184,7 +184,7 @@ cd nagios-4.3.1
 ./configure --with-command-group=nagcmd
 ```
 
-![image-20230516174345089](Nagios的安装和基本配置.assets/image-20230516174345089.png)
+![image-20230516174345089](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909717.png)
 
 编译安装
 
@@ -194,37 +194,37 @@ make all
 make install
 ```
 
-![image-20230516174508599](Nagios的安装和基本配置.assets/image-20230516174508599.png)
+![image-20230516174508599](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909718.png)
 
 ```shell
 make install-init
 ```
 
-![image-20230516174558045](Nagios的安装和基本配置.assets/image-20230516174558045.png)
+![image-20230516174558045](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909719.png)
 
 ```shell
 make install-config
 ```
 
-![image-20230516174637772](Nagios的安装和基本配置.assets/image-20230516174637772.png)
+![image-20230516174637772](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909720.png)
 
 ```shell
 make install-commandmode
 ```
 
-![image-20230516175059942](Nagios的安装和基本配置.assets/image-20230516175059942.png)
+![image-20230516175059942](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909721.png)
 
 ```shell
 make install-webconf
 ```
 
-![image-20230516175117396](Nagios的安装和基本配置.assets/image-20230516175117396.png)
+![image-20230516175117396](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909722.png)
 
 ```shell
 ll /usr/local/nagios/
 ```
 
-![image-20230516175134256](Nagios的安装和基本配置.assets/image-20230516175134256.png)
+![image-20230516175134256](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909723.png)
 
 
 
@@ -234,7 +234,7 @@ ll /usr/local/nagios/
 yum -y install sendmail mailx
 ```
 
-![image-20230516175505163](Nagios的安装和基本配置.assets/image-20230516175505163.png)
+![image-20230516175505163](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909724.png)
 
 启动服务
 
@@ -243,7 +243,7 @@ systemctl restart sendmail.service
 systemctl status sendmail.service
 ```
 
-![image-20230516175641201](Nagios的安装和基本配置.assets/image-20230516175641201.png)
+![image-20230516175641201](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909725.png)
 
 发送邮件测试(输入完成后按`Ctrl+D`退出并发送)
 
@@ -268,7 +268,7 @@ vi /usr/local/nagios/etc/objects/contacts.cfg
 htpasswd -c /usr/local/nagios/etc/htpasswd.users nagios
 ```
 
-![image-20230516180808126](Nagios的安装和基本配置.assets/image-20230516180808126.png)
+![image-20230516180808126](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909726.png)
 
 修改nagios用户权限（因为系统默认用户为nagiosadmin )配置完成后需重启http服务
 
@@ -277,7 +277,7 @@ sed -i 's#nagiosadmin#nagios#g' /usr/local/nagios/etc/cgi.cfg
 grep nagios /usr/local/nagios/etc/cgi.cfg
 ```
 
-![image-20230516180959813](Nagios的安装和基本配置.assets/image-20230516180959813.png)
+![image-20230516180959813](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909727.png)
 
 
 
@@ -296,7 +296,7 @@ systemctl restart httpd.service
 
 如下无警告无错误即为成功
 
-![image-20230516181025717](Nagios的安装和基本配置.assets/image-20230516181025717.png)
+![image-20230516181025717](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909728.png)
 
 
 
@@ -304,7 +304,7 @@ systemctl restart httpd.service
 
 注意指令输入是所在的路径
 
-![image-20230516183507517](Nagios的安装和基本配置.assets/image-20230516183507517.png)
+![image-20230516183507517](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909729.png)
 
 ```shell
 tar zxvf nagios-plugins-2.2.1.tar.gz
@@ -317,7 +317,7 @@ make && make install
 ls /usr/local/nagios/libexec/| wc -l
 ```
 
-![image-20230516181645177](Nagios的安装和基本配置.assets/image-20230516181645177.png)
+![image-20230516181645177](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909730.png)
 
 
 
@@ -329,7 +329,7 @@ chkconfig nagios on
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
 ```
 
-![image-20230516181812820](Nagios的安装和基本配置.assets/image-20230516181812820.png)
+![image-20230516181812820](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909731.png)
 
 如果防火墙没有安装会影响后续的验证
 
@@ -339,7 +339,7 @@ systemctl start firewalld
 systemctl status firewalld
 ```
 
-![image-20230516181915918](Nagios的安装和基本配置.assets/image-20230516181915918.png)
+![image-20230516181915918](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909732.png)
 
 添加防火墙规则（开放http端口)
 
@@ -354,25 +354,25 @@ firewall-cmd -reload
 
 打开nagios的web页面验证:`192.168.10.121:/nagios`
 
-![image-20230516182219461](Nagios的安装和基本配置.assets/image-20230516182219461.png)
+![image-20230516182219461](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909733.png)
 
 ### 主页
 
-![image-20230516182312115](Nagios的安装和基本配置.assets/image-20230516182312115.png)
+![image-20230516182312115](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909734.png)
 
 查看本机验证信息
 
-![image-20230516182453328](Nagios的安装和基本配置.assets/image-20230516182453328.png)
+![image-20230516182453328](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909735.png)
 
 查看本机服务信息
 
-![image-20230516182553065](Nagios的安装和基本配置.assets/image-20230516182553065.png)
+![image-20230516182553065](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909736.png)
 
 ### 安装nrpe
 
 注意指令输入是所在的路径
 
-![image-20230516183507517](Nagios的安装和基本配置.assets/image-20230516183507517.png)
+![image-20230516183507517](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909729.png)
 
 ```shell
 cd /root/software
@@ -389,13 +389,13 @@ cd nrpe-3.2.1
 
 
 
-![image-20230516183349947](Nagios的安装和基本配置.assets/image-20230516183349947.png)
+![image-20230516183349947](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909737.png)
 
 ```shell
 make all
 ```
 
-![image-20230516183718603](Nagios的安装和基本配置.assets/image-20230516183718603.png)
+![image-20230516183718603](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909738.png)
 
 ```shell
 make install-plugin
@@ -406,7 +406,7 @@ cd /usr/local/nagios/libexec/
 ls | grep check_nrpe
 ```
 
-![image-20230516184112654](Nagios的安装和基本配置.assets/image-20230516184112654.png)
+![image-20230516184112654](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909739.png)
 
 
 
@@ -430,7 +430,7 @@ vi /etc/selinux/config
 
 **重启服务器**
 
-![image-20230516184348684](Nagios的安装和基本配置.assets/image-20230516184348684.png)
+![image-20230516184348684](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909740.png)
 
 配置环境
 
@@ -440,13 +440,13 @@ yum install gd gd-devel openssl openssl-devel -y
 yum install php php-gd perl net-tools -y
 ```
 
-![image-20230516190754908](Nagios的安装和基本配置.assets/image-20230516190754908.png)
+![image-20230516190754908](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909741.png)
 
 
 
 传入文件
 
-![image-20230516191106666](Nagios的安装和基本配置.assets/image-20230516191106666.png)安装nagios-plugin添加nagios用户
+![image-20230516191106666](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909742.png)安装nagios-plugin添加nagios用户
 
 ```shell
 cd /root/software/
@@ -458,7 +458,7 @@ cd nagios-plugins-2.2.1
 make && make install
 ```
 
-![image-20230518214134846](Nagios的安装和基本配置.assets/image-20230518214134846.png)
+![image-20230518214134846](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909743.png)
 
 安装nrpe
 
@@ -474,7 +474,7 @@ cd nrpe-3.2.1
 --enable-ssl
 ```
 
-![image-20230518212820267](Nagios的安装和基本配置.assets/image-20230518212820267.png)
+![image-20230518212820267](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909744.png)
 
 ```shell
 make all
@@ -488,9 +488,9 @@ make install-config
 ls /usr/local/nagios/libexec/ |grep check_nrpe
 ```
 
-![image-20230518214257364](Nagios的安装和基本配置.assets/image-20230518214257364.png)
+![image-20230518214257364](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909745.png)
 
-![image-20230519114604824](Nagios的安装和基本配置.assets/image-20230519114604824.png)
+![image-20230519114604824](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909746.png)
 
 ### 启动nrpe
 
@@ -509,11 +509,11 @@ netstat -lntp
 
 
 
-![image-20230519112043083](Nagios的安装和基本配置.assets/image-20230519112043083.png)
+![image-20230519112043083](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909747.png)
 
 ### 排错
 
-![image-20230518215521948](Nagios的安装和基本配置.assets/image-20230518215521948.png)
+![image-20230518215521948](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909748.png)
 
 
 
@@ -527,7 +527,7 @@ netstat -lntp
 vi /usr/local/nagios/etc/nrpe.cfg
 ```
 
-![image-20230518220330453](Nagios的安装和基本配置.assets/image-20230518220330453.png)
+![image-20230518220330453](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909749.png)
 
 重启nrpe
 
@@ -544,7 +544,7 @@ cd /usr/local/nagios/libexec/
 ./check_nrpe -H 192.168.10.122
 ```
 
-![image-20230518220406708](Nagios的安装和基本配置.assets/image-20230518220406708.png)
+![image-20230518220406708](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909750.png)
 
 ```shell
 echo "/usr/local/nagios/bin/nrpe -d -c /usr/local/nagios/etc/nrpe.cfg" >> /etc/rc.local
@@ -553,11 +553,11 @@ netstat -Input | grep 5666
 /usr/local/nagios/libexec/check_nrpe -H localhost
 ```
 
-![image-20230519115153558](Nagios的安装和基本配置.assets/image-20230519115153558.png)
+![image-20230519115153558](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909751.png)
 
 再client端做同样的验证
 
-![image-20230519115318616](Nagios的安装和基本配置.assets/image-20230519115318616.png)
+![image-20230519115318616](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909752.png)
 
 ```shell
 cd /usr/local/nagios/etc
@@ -567,7 +567,7 @@ vi nrpe.cfg
 
 注释nrpe.cfg中的一下几行
 
-![image-20230519115737203](Nagios的安装和基本配置.assets/image-20230519115737203.png)
+![image-20230519115737203](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909753.png)
 
 
 
@@ -586,21 +586,21 @@ command[check_mem]=/usr/local/nagios/libexec/check_mem.pl -w 90% -c 95%
 command[check_swap]=/usr/local/nagios/libexec/check_swap -w 20% -c 10%
 ```
 
-![image-20230519120618109](Nagios的安装和基本配置.assets/image-20230519120618109.png)
+![image-20230519120618109](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909754.png)
 
 创建一个监控内存的perl脚本
 
 将`check_mem.pl`文件从software移到`/usr/local/nagios/libexec`
 
-![image-20230519121253236](Nagios的安装和基本配置.assets/image-20230519121253236.png)
+![image-20230519121253236](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909755.png)
 
-![image-20230519121444578](Nagios的安装和基本配置.assets/image-20230519121444578.png)
+![image-20230519121444578](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909756.png)
 
 ```shell
 vi /usr/local/nagios/libexec/check_mem.pl
 ```
 
-![image-20230519121604618](Nagios的安装和基本配置.assets/image-20230519121604618.png)
+![image-20230519121604618](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909757.png)
 
 修改脚本权限
 
@@ -622,7 +622,7 @@ netstat -lntp
 /usr/local/nagios/libexec/check_nrpe -H localhost -c check_mem
 ```
 
-![image-20230519122600588](Nagios的安装和基本配置.assets/image-20230519122600588.png)
+![image-20230519122600588](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909758.png)
 
 
 
@@ -633,7 +633,7 @@ netstat -lntp
 /usr/local/nagios/libexec/check_nrpe -H 192.168.10.122 -c check_disk
 ```
 
-![image-20230519122852657](Nagios的安装和基本配置.assets/image-20230519122852657.png)
+![image-20230519122852657](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909759.png)
 
 
 
@@ -645,7 +645,7 @@ vi /usr/local/nagios/etc/nagios.cfg
 
 注释掉这行
 
-![image-20230519123403821](Nagios的安装和基本配置.assets/image-20230519123403821.png)
+![image-20230519123403821](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909760.png)
 
 添加下面两行内容
 
@@ -654,7 +654,7 @@ cfg_file=/usr/local/nagios/etc/objects/services.cfg
 cfg_file=/usr/local/nagios/etc/objects/hosts.cfg
 ```
 
-![image-20230519123545320](Nagios的安装和基本配置.assets/image-20230519123545320.png)
+![image-20230519123545320](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909761.png)
 
 在`/usr/local/nagios/etc/objects`路径下创建`hosts.cfg`和`services.cfg`文件
 
@@ -665,7 +665,7 @@ head -51 localhost.cfg > hosts.cfg
 chown -R nagios.nagios *
 ```
 
-![image-20230519124047401](Nagios的安装和基本配置.assets/image-20230519124047401.png)
+![image-20230519124047401](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909763.png)
 
 修改`commands.cfg`文件，在末尾添加内容
 
@@ -700,7 +700,7 @@ command_name check-tcp
 command_line $USER1$/check_tcp -H $HOSTADDRESS$ -p $ARG1$ -w 0.02 -c 0.1}
 ```
 
-![image-20230519124731732](Nagios的安装和基本配置.assets/image-20230519124731732.png)
+![image-20230519124731732](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909764.png)
 
 #### 主机模板配置
 
@@ -711,7 +711,7 @@ cd /usr/local/nagios/etc/objects
 vi hosts.cfg +21
 ```
 
-![image-20230519125044063](Nagios的安装和基本配置.assets/image-20230519125044063.png)
+![image-20230519125044063](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909765.png)
 
 添加如下内容
 
@@ -753,7 +753,7 @@ define host {
 }
 ```
 
-![image-20230519125725874](Nagios的安装和基本配置.assets/image-20230519125725874.png)
+![image-20230519125725874](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909766.png)
 
 
 
@@ -773,7 +773,7 @@ define hostgroup{
 }
 ```
 
-![image-20230523152320187](Nagios的安装和基本配置.assets/image-20230523152320187.png)
+![image-20230523152320187](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909767.png)
 
 服务模板配置
 
@@ -868,9 +868,9 @@ systemctl daemon-reload
 /etc/init.d/nagios restart
 ```
 
-![image-20230523152357626](Nagios的安装和基本配置.assets/image-20230523152357626.png)
+![image-20230523152357626](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909768.png)
 
-![image-20230523163623348](Nagios的安装和基本配置.assets/image-20230523163623348.png)
+![image-20230523163623348](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311909769.png)
 
 
 

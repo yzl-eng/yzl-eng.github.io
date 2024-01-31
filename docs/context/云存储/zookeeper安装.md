@@ -12,7 +12,7 @@ tar -xzf ~/setups/zookeeper-3.4.9.tar.gz
 ```
 
 
-![image-20230331114940196](zookeeper安装.assets/image-20230331114940196.png)
+![image-20230331114940196](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923609.png)
 
 
 
@@ -21,7 +21,7 @@ vi ~/.bash_profile
 #配置Zookeeper相关的环境变量
 ```
 
-![image-20230331115516317](zookeeper安装.assets/image-20230331115516317.png)
+![image-20230331115516317](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923610.png)
 
 
 
@@ -41,7 +41,7 @@ export ZOOKEEPER_HOME PATH
 
 
 
-![image-20230331115739586](zookeeper安装.assets/image-20230331115739586.png)
+![image-20230331115739586](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923611.png)
 
 
 
@@ -54,7 +54,7 @@ echo $PATH
 #设置成功，以及环境变量的值是否正确。
 ```
 
-![image-20230331120016430](zookeeper安装.assets/image-20230331120016430.png)
+![image-20230331120016430](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923612.png)
 
 
 
@@ -71,9 +71,9 @@ cp zoo_sample.cfg zoo.cfg
 #考贝生成Zookeeper的配置文件
 ```
 
-![image-20230331172021564](zookeeper安装.assets/image-20230331172021564.png)
+![image-20230331172021564](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923613.png)
 
-![image-20230331172132709](zookeeper安装.assets/image-20230331172132709.png)
+![image-20230331172132709](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923614.png)
 
 
 
@@ -82,7 +82,7 @@ vi zoo.cfg
 #对配置文件进行修改
 ```
 
-![image-20230331172504252](zookeeper安装.assets/image-20230331172504252.png)
+![image-20230331172504252](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923615.png)
 
 ```shell
 #以下配置项若已经存在则修改其对应值，若不存在则在配置文件末尾进行添加:
@@ -95,7 +95,7 @@ server.4=LZY-04:2888:3888
 server.5=LZY-05:2888:3888
 ```
 
-![image-20230331172618507](zookeeper安装.assets/image-20230331172618507.png)
+![image-20230331172618507](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923616.png)
 
 
 
@@ -116,13 +116,13 @@ scp -r ~/zookeeper ~/.bash_profile admin@LZY-04:/home/admin
 scp -r ~/zookeeper ~/.bash_profile admin@LZY-05:/home/admin
 ```
 
-![image-20230331173750394](zookeeper安装.assets/image-20230331173750394.png)
+![image-20230331173750394](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923617.png)
 
-![image-20230331173818498](zookeeper安装.assets/image-20230331173818498.png)
+![image-20230331173818498](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923618.png)
 
-![image-20230331173937705](zookeeper安装.assets/image-20230331173937705.png)
+![image-20230331173937705](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923619.png)
 
-![image-20230331174028859](zookeeper安装.assets/image-20230331174028859.png)
+![image-20230331174028859](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923620.png)
 
 
 
@@ -132,13 +132,13 @@ scp -r ~/zookeeper ~/.bash_profile admin@LZY-05:/home/admin
 source ~/.bash_profile
 ```
 
-![image-20230331174059864](zookeeper安装.assets/image-20230331174059864.png)
+![image-20230331174059864](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923621.png)
 
-![image-20230331174230180](zookeeper安装.assets/image-20230331174230180.png)
+![image-20230331174230180](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923622.png)
 
-![image-20230331174241249](zookeeper安装.assets/image-20230331174241249.png)
+![image-20230331174241249](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923623.png)
 
-![image-20230331174207939](zookeeper安装.assets/image-20230331174207939.png)
+![image-20230331174207939](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923624.png)
 
 
 
@@ -150,15 +150,15 @@ echo $ZOOKEEPER_HOME
 echo $PATH
 ```
 
-![image-20230331174505687](zookeeper安装.assets/image-20230331174505687.png)
+![image-20230331174505687](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923625.png)
 
-![image-20230331174644313](zookeeper安装.assets/image-20230331174644313.png)
+![image-20230331174644313](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923626.png)
 
-![image-20230331174741901](zookeeper安装.assets/image-20230331174741901.png)
+![image-20230331174741901](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923627.png)
 
-![image-20230331174759145](zookeeper安装.assets/image-20230331174759145.png)
+![image-20230331174759145](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923628.png)
 
-![image-20230331174814785](zookeeper安装.assets/image-20230331174814785.png)
+![image-20230331174814785](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923629.png)
 
 
 
@@ -181,7 +181,7 @@ echo '5' > ~/zookeeper/data/myid
 ```
 
 
-![image-20230331175507245](zookeeper安装.assets/image-20230331175507245.png)
+![image-20230331175507245](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923630.png)
 
 
 ## Zookeeper完全分布模式启动和验证
@@ -193,7 +193,7 @@ echo '5' > ~/zookeeper/data/myid
  systemctl disable firewalld.service
 ```
 
-![image-20230331180050585](zookeeper安装.assets/image-20230331180050585.png)
+![image-20230331180050585](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923631.png)
 
 
 
@@ -205,15 +205,15 @@ echo '5' > ~/zookeeper/data/myid
 zkServer.sh start
 ```
 
-![image-20230331180300828](zookeeper安装.assets/image-20230331180300828.png)
+![image-20230331180300828](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923632.png)
 
-![image-20230331180332293](zookeeper安装.assets/image-20230331180332293.png)
+![image-20230331180332293](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923633.png)
 
-![image-20230331180359709](zookeeper安装.assets/image-20230331180359709.png)
+![image-20230331180359709](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923634.png)
 
-![image-20230331180427883](zookeeper安装.assets/image-20230331180427883.png)
+![image-20230331180427883](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923636.png)
 
-![image-20230331180441807](zookeeper安装.assets/image-20230331180441807.png)
+![image-20230331180441807](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923637.png)
 
 
 
@@ -223,15 +223,15 @@ zkServer.sh start
 jps
 ```
 
-![image-20230331180722988](zookeeper安装.assets/image-20230331180722988.png)
+![image-20230331180722988](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923638.png)
 
-![image-20230331180739940](zookeeper安装.assets/image-20230331180739940.png)
+![image-20230331180739940](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923639.png)
 
-![image-20230331180751901](zookeeper安装.assets/image-20230331180751901.png)
+![image-20230331180751901](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923640.png)
 
-![image-20230331180805958](zookeeper安装.assets/image-20230331180805958.png)
+![image-20230331180805958](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923641.png)
 
-![image-20230331182427314](zookeeper安装.assets/image-20230331182427314.png)
+![image-20230331182427314](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923642.png)
 
 
 
@@ -241,14 +241,14 @@ jps
 zkServer.sh status
 ```
 
-![image-20230331182500377](zookeeper安装.assets/image-20230331182500377.png)
-![image-20230331182528616](zookeeper安装.assets/image-20230331182528616.png)
+![image-20230331182500377](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923643.png)
+![image-20230331182528616](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923644.png)
 
-![image-20230331190427657](zookeeper安装.assets/image-20230331190427657.png)
+![image-20230331190427657](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923645.png)
 
-![image-20230331182554379](zookeeper安装.assets/image-20230331182554379.png)
+![image-20230331182554379](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923646.png)
 
-![image-20230331190406362](zookeeper安装.assets/image-20230331190406362.png)
+![image-20230331190406362](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923647.png)
 
 
 
@@ -266,6 +266,6 @@ zkCli.sh -server LZY-04:2181
 zkCli.sh -server LZY-05:2181
 ```
 
-![image-20230331190720851](zookeeper安装.assets/image-20230331190720851.png)
+![image-20230331190720851](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923648.png)
 
-![image-20230331190828261](zookeeper安装.assets/image-20230331190828261.png)
+![image-20230331190828261](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311923649.png)

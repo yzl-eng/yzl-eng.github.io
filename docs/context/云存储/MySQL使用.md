@@ -62,7 +62,7 @@ create database testDB;
 use testDB;
 ```
 
-![image-20230602110330849](MySQL使用.assets/image-20230602110330849.png)
+![image-20230602110330849](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922924.png)
 
 2、创建一个mytable表
 
@@ -74,7 +74,7 @@ create table mytable (name varchar(20),sex char(1),birth date,birthaddr varchar(
 
 注释:这个表中包含的数据为员工信息统计，有:姓名，性别，出生日期，出生地。由于`name`、`birthaddr`的列值是变化的，因此选择`VARCHAR`，其长度不一定是20。可以选择从1到255的任何长度，如果以后需要改变它的字长，可以使用`ALTER TABLE` 语句。性别只需一个字符就可以表示:`m`或`f`，因此选用`CHAR(1)`,`birth`列则使用`DATE`数据类型。
 
-![image-20230602110426555](MySQL使用.assets/image-20230602110426555.png)
+![image-20230602110426555](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922925.png)
 
 3、显示表结构
 
@@ -84,7 +84,7 @@ create table mytable (name varchar(20),sex char(1),birth date,birthaddr varchar(
 describe mytable;
 ```
 
-![image-20230602110455551](MySQL使用.assets/image-20230602110455551.png)
+![image-20230602110455551](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922926.png)
 
 4、向表中插入一条记录
 
@@ -102,15 +102,15 @@ insert into mytable values('abc','f','1988-07-07','china');
 select * from mytable;
 ```
 
-![image-20230602110549026](MySQL使用.assets/image-20230602110549026.png)
+![image-20230602110549026](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922927.png)
 
 
 
 ## 练习二 将txt文件导入表中
 
-![image-20230602113236321](MySQL使用.assets/image-20230602113236321.png)
+![image-20230602113236321](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922928.png)
 
-![image-20230602111134061](MySQL使用.assets/image-20230602111134061.png)
+![image-20230602111134061](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922929.png)
 
 代码:
 
@@ -118,7 +118,7 @@ select * from mytable;
 load data local infile "mysql.txt" into table mytable fields terminated by ',' lines terminated by '\r\n';
 ```
 
-![image-20230602113256041](MySQL使用.assets/image-20230602113256041.png)
+![image-20230602113256041](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922930.png)
 
 
 
@@ -137,17 +137,17 @@ SELECT DISTINCT sex FROM mytable;
 SELECT* FROM mytable WHERE sex='f';
 ```
 
-![image-20230602113326877](MySQL使用.assets/image-20230602113326877.png)
+![image-20230602113326877](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922931.png)
 
-![image-20230602113355592](MySQL使用.assets/image-20230602113355592.png)
+![image-20230602113355592](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922932.png)
 
 
 
 ### sql工具使用
 
-![image-20230602113648864](MySQL使用.assets/image-20230602113648864.png)
+![image-20230602113648864](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922933.png)
 
-![image-20230602113551429](MySQL使用.assets/image-20230602113551429.png)
+![image-20230602113551429](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922934.png)
 
 
 
@@ -155,7 +155,7 @@ SELECT* FROM mytable WHERE sex='f';
 
 根据下列表格中所提供的关系型数据库的数据模型和数据，在MySQL数据库中创建和添加相应的数据库、表、数据。
 
-![image-20230602105729490](MySQL使用.assets/image-20230602105729490.png)
+![image-20230602105729490](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922935.png)
 
 ```sql
 create table book_info (title varchar(20),borrower varchar(20),sex char(1),number varchar(20),lendingdate date,returndate date);
@@ -165,9 +165,9 @@ insert into book_info values('xunihuajishu','wanger','f','20230003','2023-04-09'
 insert into book_info values('javakaifa','lzy','m','20230004','2023-06-02','2023-06-03');
 ```
 
-![image-20230602115251778](MySQL使用.assets/image-20230602115251778.png)
+![image-20230602115251778](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922936.png)
 
-![image-20230602115242960](MySQL使用.assets/image-20230602115242960.png)
+![image-20230602115242960](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922937.png)
 
 ## 作业二
 
@@ -181,6 +181,6 @@ insert into book_info values('javakaifa','lzy','m','20230004','2023-06-02','2023
 mysqldump -u root -p testDB book_info > /root/mysql.sql;
 ```
 
-![image-20230602120021251](MySQL使用.assets/image-20230602120021251.png)
+![image-20230602120021251](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922938.png)
 
-![image-20230602120145830](MySQL使用.assets/image-20230602120145830.png)
+![image-20230602120145830](https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202401311922939.png)
