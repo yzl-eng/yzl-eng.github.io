@@ -80,9 +80,12 @@ whyour/qinglong:latest
 from openjdk:11.0-jre-buste
 ```
 
-## docker部署TTRSS 
+## docker部署RSS服务
+
+### TTRSS 
 
 ```yaml
+//docker-compose.yaml
 version: "3"
 services:
   service.rss:
@@ -168,7 +171,26 @@ docker-compose restart
 
 
 
+### FreshRSS
 
+命令如下
+
+``` shell
+docker run -d --restart unless-stopped --log-opt max-size=10m \
+  -p 40041:80 \
+  -e TZ=Asia/Shanghai \
+  -e 'CRON_MIN=1,31' \
+  -v freshrss_data:/var/www/FreshRSS/data \
+  -v freshrss_extensions:/var/www/FreshRSS/extensions \
+  --name freshrss \
+  freshrss/freshrss
+```
+
+
+
+## docker相关配置
+
+### 设置网络代理
 
 ### 已生成的 Container
 
@@ -180,8 +202,6 @@ docker-compose restart
 export http_proxy="http://192.168.3.100:7890"
 export https_proxy="https://192.168.3.100:7890"
 ```
-
-
 
 #### 2. 临时设定
 
