@@ -4,7 +4,7 @@
     -   [docker使用相关命令和操作](context/折腾经验/docker使用相关命令和操作.md)
 * [Python](context/Python/)
 
-    * [数据分析入门](context/Python/数据分析入门.md)
+    * [数据分析入门](context/Python/Python数据分析入门.md)
     * [学习笔记01](context/Python/Python学习笔记.md)
     * [学习笔记02](context/Python/Python学习笔记2.md)
 
