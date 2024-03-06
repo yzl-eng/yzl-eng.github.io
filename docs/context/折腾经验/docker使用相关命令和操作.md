@@ -5,17 +5,27 @@
 ```shell
 docker run -d \
     --name mysql \
-    -p 3306:3306 \
+    -p 43306:3306 \
     -e TZ=Asia/Shanghai \
-    -e MYSQL_ROOT_PASSWORD=123 \
+    --restart unless-stopped \
+	-v /mydata/mysql/log:/var/log/mysql \
+	-v /mydata/mysql/data:/var/lib/mysql \
+	-v /mydata/mysql/conf:/etc/mysql \
+    -e MYSQL_ROOT_PASSWORD=123456 \
     mysql
 ```
 
 `docker run`:创建并运行一个容器，`-d`是让容器在后台运行
 
-`-p 3306:3306`:设置端口映射，前为宿主机端口
+`-p 43306:3306`:设置端口映射，前为宿主机端口
+
+`-v`参数用于将主机的目录或文件挂载到容器内部。它的语法是`-v <主机目录或文件>:<容器目录或文件>`
+
+分别是日志文件，mysql存储文件，配置文件
 
 `-e`:设置环境变量 
+
+### 安装nginx
 
 ```shell
 docker run -d \
