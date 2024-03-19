@@ -351,7 +351,7 @@ print(text2)
 
 运行结果
 
-<img src="图片素材/image-20211209151523954.png" alt="image-20211209151523954" style="zoom:200%;" />
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202403192153926.png" alt="image-20211209151523954" style="zoom:200%;" />
 
 
 
@@ -482,7 +482,7 @@ print(type(set2))
 
 输出结果：
 
-<img src="图片素材/image-20211223190418491.png" alt="image-20211223190418491" style="zoom:200%;" />
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202403192153927.png" alt="image-20211223190418491" style="zoom:200%;" />
 
 **set()函数：**`set([iterable])`其中`iterable`为可迭代对象，能用`for...in... `循环的数据，包括列表
 
