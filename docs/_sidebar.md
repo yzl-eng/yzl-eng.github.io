@@ -5,13 +5,13 @@
 * [Python](context/Python/)
 
     * [数据分析入门](context/Python/Python数据分析入门.md)
-    * [学习笔记01](context/Python/Python学习笔记.md)
-    * [学习笔记02](context/Python/Python学习笔记2.md)
+    * [Python基础Ⅰ](context/Python/Python学习笔记.md)
+    * [Python基础Ⅱ](context/Python/Python学习笔记2.md)
 
 * [数据库](context/DateBase/)
 
     * [MySQL使用](context/DateBase/MySQL使用.md)
-    * [学习笔记01](context/DateBase/数据库学习笔记01.md)
+    * [MySQL基础](context/DateBase/数据库学习笔记01.md)
 
 * [云安全](context/云安全/README.md)
     * [云端应用sql注入攻击](context/云安全/云端应用sql注入攻击.md)
@@ -20,7 +20,7 @@
     * [kali虚拟机安装](context\云安全\kali虚拟机安装.md)
     * [kali安装tor和vpn](context/云安全/kali安装tor和vpn.md)
     * [Linux系统安全加固](context/云安全/Linux系统安全加固.md)
-    * [Nagios的安装和基本配置](contex/云安全/Nagios的安装和基本配置.md)
+    * [Nagios的安装和基本配置](context/云安全/Nagios的安装和基本配置.md)
     * [Nmap安装与扫描基础](context/云安全/Nmap安装与扫描基础.md)
     * [PGP加密技术应用](context/云安全/PGP加密技术应用.md)
 * [云存储](context/云存储/论文.md)

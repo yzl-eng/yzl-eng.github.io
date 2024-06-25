@@ -90,6 +90,19 @@ whyour/qinglong:latest
 from openjdk:11.0-jre-buste
 ```
 
+
+
+**docker更改时区**
+
+```shell
+#容器外操作
+docker cp /usr/share/zoneinfo/Asia/Shanghai f756b7785149:/usr/share/zoneinfo/Asia
+#容器内操作
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+
+
 ## docker部署RSS服务
 
 ### TTRSS 
