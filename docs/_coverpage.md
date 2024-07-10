@@ -2,6 +2,5 @@
 
 # 博客
 
-
-[Github](<https://github.com/moxi624/mogu_blog_v2>)
+[Github](https://github.com/yzl-eng)
 [开始阅读](README.md)
