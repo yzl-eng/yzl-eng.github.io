@@ -39,13 +39,71 @@ pyside6-designer
 
 
 
-注意，PySide6是不能直接使用ui文件的，我们还需要将其转为py文件。首先cd到hello文件夹中，然后使用命令：
+## 配置
+
+### Pycharm配置PySide6
+
+打开Pycharm点击`File` -> `Settings` -> `Tools` -> `External Tools`，点击`＋`。需要添加 `Pyside6-Designer` 、 `Pyside6-UIC` 和 `Pyside6-rcc`三个选项。
+
+#### 配置PySide6-Designer
+
+- **designer.exe**是 PySide6 框架中的图形界面设计器工具，它允许您可视化地创建和编辑用户界面。开发者能够通过拖放、调整大小和设置属性等操作来创建复杂的 GUI 布局，而**无需手动编写代码**。
+
+- `designer.exe`在**虚拟环境**所安装的文件夹下的`Lib\site-packages\PySide6`文件夹下,`D:\Anaconda\envs\Flaskenv\Lib\site-packages\PySide6\designer.exe`
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408072356264.png" alt="image-20240807235642215" style="zoom:67%;" />
+
+#### 配置PySide6-uic
+
+- `pyside6-uic.exe` 是 PySide6 框架中的一个命令行工具，用于将 Qt Designer 创建的 `.ui` 文件（用户界面文件）转换为 Python 代码。
+- `pyside6-uic.exe`在虚拟环境所安装的文件夹下的`Scripts`文件夹下,`D:\Anaconda\envs\Flaskenv\Scripts\pyside6-uic.exe`
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408080035178.png" alt="image-20240808000235378" style="zoom:67%;" />
+
+#### 配置PySide6-rcc
+
+- `pyside6-rcc.exe `是 PySide6 框架中的一个命令行工具，用于将 Qt 资源文件（`.qrc` 文件）编译成 Python 代码文件。资源文件通常用于存储应用程序所需的非代码资源，如图像、样式表、音频文件等。通过将资源文件编译成 Python 代码，可以在 PySide6 应用程序中更方便地访问这些资源。
+- `pyside6-rcc.exe`也在虚拟环境所安装的文件夹下的`Scripts`文件夹下,`D:\Anaconda\envs\Flaskenv\Scripts\pyside6-rcc.exe`
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408080035514.png" alt="image-20240808002259095" style="zoom:67%;" />
+
+[参考资料](https://blog.csdn.net/qq_45062768/article/details/132357617)
+
+
+
+### VSCode配置PySide6环境
+
+在应用商店中搜索插件`PYQT Integration`，点击安装即可。
+
+打开插件设置
+
+按上面Pycharm用到的地址填入插件设置的相应位置
+
+#### 配置PySide6-Designer
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081846794.png" alt="image-20240808184613752" style="zoom:50%;" />
+
+#### 配置PySide6-rcc
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081845483.png" alt="image-20240808184516358" style="zoom: 50%;" />
+
+#### 配置PySide6-uic
+
+<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081845982.png" alt="image-20240808184538933" style="zoom:50%;" />
+
+
+
+## 使用
+
+注意，PySide6是不能直接使用`.ui`文件的，我们还需要将其转为`.py`文件。首先cd到hello文件夹中，然后使用命令：
 
 ```bash
 pyside6-uic hello.ui > ui.py
 ```
 
-代码示例
+
+
+### 基础代码示例
 
 ```python
 # hello.py
@@ -71,7 +129,6 @@ if __name__=='__main__':
 # app.py
 from PySide6.QtWidgets import QApplication, QWidget
 
-
 # Only needed for access to command line arguments
 import sys
 
@@ -92,18 +149,16 @@ app.exec()
 ```
 
 
+运行，QT会自动创建一个带有普通窗口装饰的窗口，你可以将其拖动并像任何窗口一样大小。
 
 ```shell
 python app.py
 ```
 
-运行，QT会自动创建一个带有普通窗口装饰的窗口，你可以将其拖动并像任何窗口一样大小。
-
-
-> from PySide6.QtWidgets import QApplication, QWidget
 
 
 应用程序处理程序和`QWidget`，一个基础的空白GUI小部件，都来自`QtWidgets`模块
+> from PySide6.QtWidgets import QApplication, QWidget
 
 
 
@@ -130,57 +185,91 @@ pip install auto-py-to-exe
 
 [参考资料](https://blog.csdn.net/qianbin3200896/article/details/126947934)
 
+## 
+
+通过PySide6和QT designer设计一个计算器
+
+在QT designer中设计好UI
+
+<img src="D:/Typora_img/image-20240823110119583.png" alt="image-20240823110119583" style="zoom: 67%;" />
+
+生成对应UI文件，将对应`.ui`文件通过**PySide_UIC**转成`.py`文件
+
+在主程序中导入该文件
+
+**程序示例**
+
+```python
+# main.py
+
+import sys
+
+from PySide6.QtWidgets import QApplication, QWidget,  QPushButton
+
+#导入UI文件
+from calculator import Ui_Form
 
 
-### Pycharm配置Pyside6
+class Calculator(QWidget, Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
 
-打开Pycharm点击`File` -> `Settings` -> `Tools` -> `External Tools`，点击`＋`。需要添加 `Pyside6-Designer` 、 `Pyside6-UIC` 和 `Pyside6-rcc`三个选项。
+        # 循环绑定数字和基本操作按钮
+        for btn in self.findChildren(QPushButton):
+            btn: QPushButton
+            if btn.objectName().startswith('num') or btn.objectName().startswith('opr'):
+                btn.clicked.connect(self.on_num_click)
 
-#### 配置Pyside6-Designer
+        # 清空按钮获取与绑定
+        self.clear_btn.clicked.connect(self.on_clear_click)
+        # 输出按钮获取与绑定
+        self.equal_btn.clicked.connect(self.on_equal_click)
+    
+    # 点击将按钮内容放入Qlabel并显示
+    def on_num_click(self):
+        number = self.sender().text()
+        self.eval_box.setText(self.eval_box.text() + number)
 
-- **designer.exe**是 PySide6 框架中的图形界面设计器工具，它允许您可视化地创建和编辑用户界面。开发者能够通过拖放、调整大小和设置属性等操作来创建复杂的 GUI 布局，而**无需手动编写代码**。
+    # 点击清空
+    def on_clear_click(self):
+        self.result_label.clear()
+        self.eval_box.clear()
 
-- `designer.exe`在**虚拟环境**所安装的文件夹下的`Lib\site-packages\PySide6`文件夹下,`D:\Anaconda\envs\Flaskenv\Lib\site-packages\PySide6\designer.exe`
-
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408072356264.png" alt="image-20240807235642215" style="zoom:67%;" />
-
-#### 配置Pyside6-uic
-
-- `pyside6-uic.exe` 是 PySide6 框架中的一个命令行工具，用于将 Qt Designer 创建的 `.ui` 文件（用户界面文件）转换为 Python 代码。
-- `pyside6-uic.exe`在虚拟环境所安装的文件夹下的`Scripts`文件夹下,`D:\Anaconda\envs\Flaskenv\Scripts\pyside6-uic.exe`
-
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408080035178.png" alt="image-20240808000235378" style="zoom:67%;" />
-
-#### 配置Pyside6-rcc
-
-- `pyside6-rcc.exe `是 PySide6 框架中的一个命令行工具，用于将 Qt 资源文件（`.qrc` 文件）编译成 Python 代码文件。资源文件通常用于存储应用程序所需的非代码资源，如图像、样式表、音频文件等。通过将资源文件编译成 Python 代码，可以在 PySide6 应用程序中更方便地访问这些资源。
-- `pyside6-rcc.exe`也在虚拟环境所安装的文件夹下的`Scripts`文件夹下,`D:\Anaconda\envs\Flaskenv\Scripts\pyside6-rcc.exe`
-
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408080035514.png" alt="image-20240808002259095" style="zoom:67%;" />
-
-[参考资料](https://blog.csdn.net/qq_45062768/article/details/132357617)
+    # 点击输出结果
+    def on_equal_click(self):
+        try:
+            result = eval(self.eval_box.text())
+            self.eval_box.clear()
+            self.result_label.setText(str(result))
+        except:
+            self.eval_box.setText('')
+            self.result_label.setText("Error")
 
 
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = Calculator()
+    # 显示窗体
+    window.show()
+    app.exec()
+```
 
-### VSCode配置PySide6环境
 
-在应用商店中搜索插件`PYQT Integration`，点击安装即可。
 
-打开插件设置
 
-按上面Pycharm用到的地址填入插件设置的相应位置
 
-#### 配置Pyside6-Designer
 
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081846794.png" alt="image-20240808184613752" style="zoom:50%;" />
 
-#### 配置Pyside6-rcc
 
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081845483.png" alt="image-20240808184516358" style="zoom: 50%;" />
 
-#### 配置Pyside6-uic
 
-<img src="https://raw.githubusercontent.com/yzl-eng/blogImage/main/img/202408081845982.png" alt="image-20240808184538933" style="zoom:50%;" />
+
+
+
+
+
+
 
 
 

@@ -429,11 +429,22 @@ print(dog.speak())  # 输出 "Woof!"
 
 
 
+### 多继承相关
+
+在 Python 的多继承情况下，`super()` 调用的是 **MRO（Method Resolution Order，方法解析顺序）** 中的下一个类的方法， 使用 C3 算法来确定方法解析的顺序。MRO 决定了在多继承结构中方法调用的顺序。
+
+
+
+方法重名：如果多个基类中有同名的方法，Python 会优先使用离当前类最近的那个基类中的方法。
+基类顺序：在定义子类时，基类的顺序很重要，因为它影响了 MRO 的构建方式。
+
+
+
 虚拟子类register
 
 **参考资料：**
 
-[python类的继承 ](https://www.cnblogs.com/bigberg/p/7182741.html)
+python类的继承 ](https://www.cnblogs.com/bigberg/p/7182741.html)
 
 
 
