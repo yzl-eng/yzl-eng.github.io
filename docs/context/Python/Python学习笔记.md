@@ -510,24 +510,24 @@ print(type(set2))
 
 - **并集：**
 
-```python
-print(list_1.union(list_2))
-print(list_1 | list_2)
-```
+    ```python
+    print(list_1.union(list_2))
+    print(list_1 | list_2)
+    ```
 
 - **差集：**
 
-```python
-print(list_1.difference(list_2))
-print(list_1 - list_2)
-```
+    ```python
+    print(list_1.difference(list_2))
+    print(list_1 - list_2)
+    ```
 
 - **对称差**：
 
-```python
-print(list_1.symmetric_difference(list_2))
-print(list_1 ^ list_2)
-```
+    ```python
+    print(list_1.symmetric_difference(list_2))
+    print(list_1 ^ list_2)
+    ```
 
 
 
@@ -535,18 +535,18 @@ print(list_1 ^ list_2)
 
 - **删除元素：**
 
-```python
-list_1.remove(3)#若元素不包含在集合中，会报错
-list_1.discard(5)#若元素不包含在集合中，不会报错
-list_1.pop()#随机删除
-```
+    ```python
+    list_1.remove(3)#若元素不包含在集合中，会报错
+    list_1.discard(5)#若元素不包含在集合中，不会报错
+    list_1.pop()#随机删除
+    ```
 
 - **添加元素：**
 
-```python
-list_1.add(100) #添加一项
-list_1.update([20,30,40])
-```
+    ```python
+    list_1.add(100) #添加一项
+    list_1.update([20,30,40])
+    ```
 
 参考资料：[python:集合及其运算](https://www.cnblogs.com/cansun/p/8040513.html?ivk_sa=1024320u)
 
@@ -620,8 +620,10 @@ dict = {'a': 1, 'b': 2, 'b': '3'}
   **values()方法**
 
   ` values() `方法返回一个[视图对象](https://blog.csdn.net/weixin_39705435/article/details/110488026)。
+  
+  
 
-  [dict.keys()](https://www.runoob.com/python3/python3-att-dictionary-keys.html)、`dict.values()` 和 [dict.items()](https://www.runoob.com/python3/python3-att-dictionary-items.html) 返回的都是**视图对象**（ view objects），提供了字典实体的动态视图，这就意味着字典改变，视图也会跟着变化。
+`[dict.keys()`、`dict.values()` 和 `dict.items()`返回的都是**视图对象**（ view objects），提供了字典实体的动态视图，这就意味着字典改变，视图也会跟着变化。
 
   **视图**只是字典上的…视图(窗口)，即使字典发生**更改**，它也会显示字典的内容。
 
@@ -738,19 +740,22 @@ dict = {'a': 1, 'b': 2, 'b': '3'}
 **示例：**
 
 ```python
- def function_name( parameters ):
+def function_name( parameters ):
   	 """函数_文档字符串"""
-  	 function_suite
+  	function_suite
    	return [expression]
 ```
 
 ***在python3.5之后，就新增了对函数参数和返回值的类型指定和检查，以及在新建变量时也可以指定类型。***
 
 ```python
- def function_name( parameters:变量类型 )-> 返回值类型:
-  	 """函数_文档字符串"""
-  	 function_suite
+def function_name( parameters:变量类型 )-> 返回值类型:
+  	function_suite
    	return [expression]
+
+def test(a:str)->str:
+    print(a)
+    return a
 ```
 
 不按指定类型输入，检查时会提出警告，但运行无影响

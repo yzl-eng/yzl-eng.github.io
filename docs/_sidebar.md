@@ -10,8 +10,8 @@
 
 * [数据库](context/DateBase/)
 
-    * [MySQL使用](context/DateBase/MySQL使用.md)
-    * [MySQL基础](context/DateBase/数据库学习笔记01.md)
+    * [MySQL使用](context/DateBase/MySQL.md)
+    * [数据库](context/DateBase/数据库学习笔记01.md)
 
 * [云安全](context/云安全/README.md)
     * [云端应用sql注入攻击](context/云安全/云端应用sql注入攻击.md)
@@ -36,9 +36,9 @@
     * [Hadoop_HA使用](context/云存储/Hadoop_HA使用.md)
     * [免密登录配置](context/云存储/免密登录配置.md)
 
--   [云应用系统开发](context/云应用系统开发/)
-    -   [Hbase](context/云应用系统开发/Hbase.md)
-    -   [mapreduce](context/云应用系统开发/mapreduce.md)
+*   [云应用系统开发](context/云应用系统开发/)
+    *  [Hbase](context/云应用系统开发/Hbase.md)
+    *  [mapreduce](context/云应用系统开发/mapreduce.md)
 
 
 

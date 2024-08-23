@@ -237,9 +237,74 @@ export https_proxy="https://192.168.3.100:7890"
 
 或者配合 VSCode 的 Remote-Container 插件配置后可以实现每次**自动设置**，具体方式请移步 [Docker 配合 VSC 开发最佳实践](https://anthonysun256.github.io/docker-with-vsc_best-practice/)
 
+[为code-server配置https解决Markdown无法预览的问题 | 不想当咸鱼王 (konsin.github.io)](https://konsin.github.io/2022/08/27/为code-server配置https解决Markdown无法预览的问题/)
+
+如何自签证书
+
+下载openssl，上传至系统
+
+通过以下指令安装
+
+```shell
+tar -xzf openssl-1.1.1d.tar.gz
+cd openssl-1.1.1d
+mkdir /usr/local/openssl
+./config --prefix=/usr/local/openssl
+make
+make install
+```
 
 
 
+```shell
+which openssl 
+ln -s /usr/local/openssl/bin/openssl /usr/bin/openssl
+```
+
+
+
+```shell
+cd /usr/local/openssl
+ldd /usr/local/openssl/bin/openssl
+```
+
+
+
+```shell
+openssl version
+```
+
+
+
+生成私钥
+
+```shell
+openssl genrsa -des3 -out server.pass.key 2048
+```
+
+去除私钥中密码
+
+```shell
+openssl rsa -in server.pass.key -out server.key
+```
+
+生成CSR
+
+```shell
+openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=Shanghai/L=Shanghai/O=cetc/OU=cetc/CN=my.kingone.website"
+```
+
+生成自签名SSL证书
+
+```shell
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+```
+
+
+
+
+
+[HTTP转HTTPS—使用OpenSSL创建自签名SSL证书以及Tomcat配置SSL证书实战-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1558378)
 
 qinglong密码
 

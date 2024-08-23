@@ -32,13 +32,13 @@ Django的**MVT**设计模式由**Model(模型)**, **View(视图)** 和**Template
 
 以下代码要一个个输入Anaconda Prompt中，不可一次性粘贴
 
-```shall
+```shell
 conda create -n Django42env python=3.9
 activate Django42env
 pip install django==4.2
 ```
 
-1. 创建一个名为`Django42env`的虚拟环境，里面安装3.9版本的python
+1. `-n`为`--name`缩写，创建一个名为`Django42env`的虚拟环境，里面安装3.9版本的python，
 2. 激活环境
 3. 在激活的环境中安装Django4.2
 
