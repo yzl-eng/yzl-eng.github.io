@@ -444,7 +444,7 @@ print(dog.speak())  # 输出 "Woof!"
 
 **参考资料：**
 
-python类的继承 ](https://www.cnblogs.com/bigberg/p/7182741.html)
+[python类的继承 ](https://www.cnblogs.com/bigberg/p/7182741.html)
 
 
 
@@ -622,11 +622,100 @@ def outF(m):       #外层函数
 
 [参考](https://blog.csdn.net/abcd51685168/article/details/140053199)
 
+
+
+## 装饰器（Decorators）
+
+装饰器本质上是一个**函数**，它可以**接收一个函数**作为参数并**返回一个新的函数**。这个新函数是对原函数的一种包装或**增强**可以在不改变原函数代码的前提下，增加额外的功能。
+
+### 工作流程
+
+装饰器的工作流程可以分为以下几个步骤：
+
+1. **定义装饰器**：首先定义一个装饰器函数，该函数接收一个函数作为参数。
+2. **定义包装函数**：在装饰器函数内部，定义一个包装函数（`wrapper`），这个包装函数会调用原函数，并可以在调用前后添加额外的逻辑。
+3. **返回包装函数**：装饰器函数返回这个包装函数。
+4. **使用`@`语法**：在需要被装饰的函数定义前使用`@`符号加上装饰器名称，这样Python解释器会自动将这个函数作为参数传递给装饰器，并将返回的新函数（包装函数）赋值给原函数名。
+
+代码示例：
+
+```python
+def decorator(func):  
+    def wrapper(*args, **kwargs):  
+        # 在这里添加额外的功能  
+        print("Before calling the function")  
+        result = func(*args, **kwargs)  
+        print("After calling the function")  
+        return result  
+    return wrapper  
+  
+@decorator  
+def my_function():  
+    print("Hello, this is my function.")  
+  
+# 调用my_function时，实际上调用的是wrapper函数  
+my_function()
+```
+
+
+
+### 高阶应用
+
+
+
+当被装饰的函数需要参数时，装饰器中的包装函数（`wrapper`）也需要能够接收这些参数。这通常通过`*args`和`**kwargs`实现。
+
+```python
+def decorator(func):  
+    def wrapper(*args, **kwargs):  
+        print("Function is called with arguments:", args, kwargs)  
+        result = func(*args, **kwargs)  
+        return result  
+    return wrapper  
+  
+@decorator  
+def my_function(x, y):  
+    return x + y  
+  
+print(my_function(3, 4))
+```
+
+
+
+如果需要给装饰器本身传递参数，可以使用一个外层函数来封装装饰器
+
+```python
+def repeat(num_times):  
+    def decorator(func):  
+        def wrapper(*args, **kwargs):  
+            for _ in range(num_times):  
+                result = func(*args, **kwargs)  
+            return result  
+        return wrapper  
+    return decorator  
+  
+@repeat(3)  
+def say_hello():  
+    print("Hello!")  
+  
+say_hello()  # 输出三次Hello!
+```
+
+
+
+参考资料:
+
+[【Python 元编程】装饰器入门指南_python元-CSDN博客](https://frica.blog.csdn.net/article/details/135738501)
+
+[深入理解Python中的装饰器（Decorators）：从基础到高级应用-CSDN博客](https://blog.csdn.net/m0_38123128/article/details/140260446)
+
+
+
 ## 进程 线程 协程
 
 进程是系统资源分配的最小单位
 
 ### 协程（Coroutine）
-协程是建立在线程之上，一般是语言级别的 ”多线程“ 模型，比线程更加的轻量级。有的叫它微线程。它是完全运行在用户态里。协程是在线程之上在进行抽象，它需要线程来承载运行。一个线程可以有多个协程。
+协程是建立在线程之上，一般是语言级别的 “多线程” 模型，比线程更加的轻量级。有的叫它微线程。它是完全运行在用户态里。协程是在线程之上在进行抽象，它需要线程来承载运行。一个线程可以有多个协程。
 
 协程是一种轻量级的、协作式的并发机制。它允许在单个线程内执行多个任务，通过协作而不是抢占来进行任务切换。协程为异步编程提供了更直观和易用的形式，可以有效地用于 I/O 密集型和高级别的结构化并发任务。

@@ -185,7 +185,9 @@ pip install auto-py-to-exe
 
 [参考资料](https://blog.csdn.net/qianbin3200896/article/details/126947934)
 
-## 
+
+
+
 
 通过PySide6和QT designer设计一个计算器
 
@@ -261,15 +263,187 @@ if __name__ == '__main__':
 
 
 
+## 信号与槽（Signals & Slots）
+
+信号与槽是Qt中的一种事件处理机制；
+
+**信号（Signals）**是当某些事情发生时由**小部件（widgets**）发出的通知。这些"某些事情"可以是任何事情，比如按下一个按钮、输入框中的文本变化，或者窗口中的文本变化，窗口大小被调整时也能产生一个信号。
+
+信号还可以**发送数据**来提供有关发生事件的额外背景信息。简单来说，信号不仅仅是用来告知某件事情已经发生，它们还可以携带额外的信息来帮助接收者更好地理解这个事件的细节或原因。
+
+**槽（Slots）**是用来**接收信号**的组件。在Python中，应用程序中的任何**函数**或**方法**都可以用作**槽**——只需将信号连接到它即可。如果信号发送数据，那么接收函数也会接收到这些数据。许多Qt控件也有自己内置的槽，这意味着你可以直接将Qt控件相互连接起来。
+
+可以将**PySide6** 的 **信号和槽** 机制简单地理解为一种 订阅机制。
+
+- 信号充当了 **发布者**（**publisher**）的角色，负责发布消息；
+- 槽扮演了 **订阅者**（**subscriber**）的角色，用于接收消息并作出响应。
+- 槽可以订阅一个或多个信号，当信号发生时，槽会自动被调用执行。
+
+
+
+### 信号与槽使用
+
+**信号**是一种特殊函数，可以在特定的情况下被`QObject` 对象发射（`emit`）
+
+在**PySide6**中，可以使用 `Signal()` 来定义信号
+
+下面代码定义了一个名为 `my_signal` 的信号，它接受一个整形参数（可以为空，也可以更换为其它类型)
+
+```python
+from PySide6.QtCore import (QThread, Signal)
+
+class MyThread(QThread):
+    my_signal = Signal(int)
+```
+
+
+
+**槽 Slot**
+
+在**PySide6**中，可以使用` @Slot()`装饰器 来定义**槽**
+
+**槽**是普通的函数，它可以被信号调用。当一个信号被发射时，与之相连接的槽将被调用，并将信号的参数传递给槽。
+
+下面定义了一个名为 `my_slot` 的槽，它接受一个字符串参数，并打印接收到的数据
+
+```python
+from PySide6.QtCore import (QThread, Slot)
+
+
+class MyThread(QThread):
+    @Slot(int)
+	def my_slot(self, data):
+    	print("Received data: ", data)
+```
+
+
+**值得注意是：**
+
+这里的` @Slot(int)` 可以不写，但是写了可以提高代码**可读性**和**执行效率**。
+
+首先，标明这是一个槽函数；其次，在运行时动态地连接信号，在一定程度上提高代码的执行效率，因为在编译期间不需要生成额外的代码来连接信号和槽。
+
+ ```python
+from PySide6.QtCore import (QThread, Signal)
+
+class MyThread(QThread):
+    my_signal = Signal(int)
+ ```
+
+
+
+信号和槽只能在 `QObject`的子类里使用
+
+
+然而，在`PySide6` 中，大部分常用的类都是继承了`QObject`类的，所以这个问题倒无需担心，只需知道有这一概念即可。
+
+信号和槽必须是**相同**的**参数类型**。在定义信号和槽时，必须确保它们的参数类型和个数是相同的，否则无法正确连接和触发信号和槽。
+
+
+
+### 连接信号和槽
+
+在 **PySide6** 中，可以使用` connect()` 方法将信号和槽相连接，如下所示：
+
+- 下面代码将`sender`对象的`my_signal`信号与`receiver`对象的`my_slot`槽相连接
+- 当`sender`对象发射`my_signal`信号时，`receiver`对象的`my_slot`槽将被调用
+
+```python
+sender = MyThread()
+receiver = MyThread()
+
+sender.my_signal.connect(receiver)
+```
 
 
 
 
+其实就是 使用` connect `将两者连接起来；
 
 
 
+```python
+import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("My App")
+
+        button = QPushButton("Press Me!")
+        button.setCheckable(True)
+        button.clicked.connect(self.the_button_was_clicked)
+
+        # Set the central widget of the Window.
+        self.setCentralWidget(button)
+
+    def the_button_was_clicked(self):
+        print("Clicked!")
+
+app = QApplication(sys.argv)
+
+window = MainWindow()
+window.show()
+
+app.exec()
+```
 
 
 
+接受数据
 
+```python
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("My App")
+
+        button = QPushButton("Press Me!")
+        button.setCheckable(True)
+        button.clicked.connect(self.the_button_was_clicked)
+        button.clicked.connect(self.the_button_was_toggled)
+
+        self.setCentralWidget(button)
+
+    def the_button_was_clicked(self):
+        print("Clicked!")
+
+    def the_button_was_toggled(self, checked):
+        print("Checked?", checked)
+```
+
+
+
+存储数据
+
+```python
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.button_is_checked = True
+
+        self.setWindowTitle("My App")
+
+        button = QPushButton("Press Me!")
+        button.setCheckable(True)
+        button.clicked.connect(self.the_button_was_toggled)
+        button.setChecked(self.button_is_checked)
+
+        self.setCentralWidget(button)
+
+    def the_button_was_toggled(self, checked):
+        self.button_is_checked = checked
+
+        print(self.button_is_checked)
+```
+
+
+
+[参考资料](https://www.pythonguis.com/tutorials/pyside6-signals-slots-events/)
+
+[参考资料2](https://frica.blog.csdn.net/article/details/130432353)
 

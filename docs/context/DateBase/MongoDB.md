@@ -36,6 +36,16 @@ High Scalability && High Availability：对数据库的高可扩展性和高可�
 
 
 
+
+
+选择要操作的数据库
+
+```shell
+use DatebaseName
+```
+
+
+
 ### 集合相关
 
 
@@ -89,7 +99,123 @@ db.demo.insert(temp)
 
 
 
+**示例：**
+
+```mongodb
+db.test0.insertOne(
+  {
+    title: "The Favourite",
+    runtime: 121,
+    year: 2018,
+    type: "movie"
+  }
+)
+```
+
+
+
+
+
+
+
+### 查询 
+
+
+
+查询所有数据` {}`或不写
+
+```mongodb
+db.test0.find({})
+db.test0.find()
+```
+
+该操作等同于以下 SQL 语句：
+
+```sql
+SELECT * FROM test0
+```
+
+
+
+查询指定要求数据` {key:value}`或`{key:{运算符:value}}`
+
+```mongodb
+# 查找title为The Favorite的条目
+db.test0.find({title: "The Favourite"})
+
+# 查找所有age小于14
+db.test0.find({age: {$lt:14}})
+```
+
+运算符
+
+- `$eq `等于
+
+- `$gt` 大于
+- `$gte` 大于等于
+- `$lt` 小于
+- `$lte` 小于等于
+- `$ne` 不等于
+- `$nin` not in 不在指定数组中
+- `$in` in 在指定数组中
+
+
+
+```shell
+db.tenant_col.find({'contracts': {'bills':{'status':{$ne:'settled'}}})
+```
+
+
+
+
+
+`$regex`为查询中的模式匹配*字符串*提供正则表达式功能。
+
+```mongodb
+target="The Favourite"
+db.test0.find({'title': {'$regex': target, '$options': 'i'}})
+```
+
+
+
+查询的列(可选参数)
+不写则查询全部列
+`{key:1}` 只显示key列
+`{key:0}` 除了key列都显示
+注意:`_id`列都会存在
+
+查询指定列的所有数据
+
+查询指定条件的数据
+
+排序
+`db.集合名.find().sort(json数据)`
+
+ json数据(key:value)
+
+- key就是要排序的字段
+- value为1表示升序,-1表示降序
+
+
+
 ### 删除
+
+- 要删除多个文档，请使用 `db.collection.deleteMany()`
+- 要删除单个文档，请使用 `db.collection.deleteOne()`
+
+
+
+```mongodb
+db.test0.deleteOne( { name: "a1" } )
+```
+
+
+
+```mongodb
+db.test0.deleteMany( { name: {'$regex': 'a', '$options': 'i'}} )
+```
+
+以下方法在**mongosh**中已弃用
 
 ```mongodb
 db.集合名.remove(删除条件,     
@@ -107,10 +233,7 @@ db.集合名.remove(删除条件,
 
 ```mongodb
 db.demo.remove(name:'zhangsan')
-
 ```
-
-
 
 也可以使用以下方式实现全部删除
 
@@ -118,13 +241,38 @@ db.demo.remove(name:'zhangsan')
 db.demo.remove({}) 
 ```
 
+
+
 ### 更新
 
+- 要更新单个文档，请使用`db.collection.updateOne()` 
+- 要更新多个文档，请使用`db.collection.updateMany()` 
+- 要替换文档，请使用 `db.collection.replaceOne()`
+
+示例：
+
+```mongodb
+db.test0.updateOne( { title: "The Favourite" },
+{
+  $set: {
+    runtime:123
+  },
+  $currentDate: { lastUpdated: true }
+})
+```
 
 
 
+某些更新操作符（例如 `$set`）会在字段不存在的情况下创建字段。
+
+更新操作：
+
+- 使用`$set`操作符更新电影`The Favourite`的`  runtime`字段的值。
+- 使用`$currentDate`操作符将`lastUpdated`字段的值更新为当前日期。如果`lastUpdated`字段不存在， `$currentDate`将创建该字段。
 
 [参考资料](https://blog.csdn.net/efew212efe/article/details/124524863)
+
+
 
 
 
