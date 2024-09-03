@@ -261,14 +261,30 @@ db.test0.updateOne( { title: "The Favourite" },
 })
 ```
 
-
-
-某些更新操作符（例如 `$set`）会在字段不存在的情况下创建字段。
-
 更新操作：
 
 - 使用`$set`操作符更新电影`The Favourite`的`  runtime`字段的值。
+
 - 使用`$currentDate`操作符将`lastUpdated`字段的值更新为当前日期。如果`lastUpdated`字段不存在， `$currentDate`将创建该字段。
+
+  
+
+`$set`: 用于设置字段的值。如果字段不存在，它将会创建这个字段。
+
+`$push`: 用于将一个值添加到数组的末尾。如果数组不存在，它会创建一个新的数组。
+
+
+
+
+
+### 使用数组过滤器
+
+在 MongoDB 中，使用数组过滤器可以对数组中的特定元素进行操作。数组过滤器是 `$[]` 和 `$[<identifier>]` 的结合使用，其中：
+
+- `$[]`: 表示对数组中的所有元素进行操作。
+- `$[<identifier>]`: 允许你指定特定的数组元素进行操作，`<identifier>` 是一个用于标识数组元素的变量名。
+
+
 
 [参考资料](https://blog.csdn.net/efew212efe/article/details/124524863)
 

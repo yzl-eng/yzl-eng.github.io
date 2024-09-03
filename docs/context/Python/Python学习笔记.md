@@ -817,6 +817,12 @@ Python传入参数的方法有：**位置参数**、**默认参数**、**可变�
 
 
 
+在 Python 中，函数参数的传递方式是**对象引用传递**。这意味着：
+
+- **对对象的引用**：传递的是对象的引用，而不是对象的副本。这意味着在函数内部对对象的修改**会影响**到原始对象。
+- **不可变对象**（如整数、字符串、元组）：虽然传递的是引用，但由于不可变对象的特性，它们不能被修改。因此，看起来像是“值传递”。
+- **可变对象**（如列表、字典、集合）：可以被修改。因此，函数内对这些对象的修改会影响到原始对象。
+
 ## 函数调用
 
 1. **模块的函数调用**
@@ -825,10 +831,6 @@ Python传入参数的方法有：**位置参数**、**默认参数**、**可变�
 	- **from**  模块名  **import**  函数名 （**as 别名**）
 		python调用另一个.py文件中的类和函数
 		同一文件夹下的调用
-
-
-
-## 装饰器
 
 
 
@@ -870,4 +872,89 @@ name(list)
 ```
 
 
+
+## 装饰器（Decorators）
+
+装饰器本质上是一个**函数**，它可以**接收一个函数**作为参数并**返回一个新的函数**。这个新函数是对原函数的一种**包装**或**增强**可以在不改变原函数代码的前提下，增加额外的功能。
+
+### 工作流程
+
+装饰器的工作流程可以分为以下几个步骤：
+
+1. **定义装饰器**：首先定义一个装饰器函数，该函数接收一个函数作为参数。
+2. **定义包装函数**：在装饰器函数内部，定义一个包装函数（`wrapper`），这个包装函数会调用原函数，并可以在调用前后添加额外的逻辑。
+3. **返回包装函数**：装饰器函数返回这个包装函数。
+4. **使用`@`语法**：在需要被装饰的函数定义前使用`@`符号加上装饰器名称，这样Python解释器会自动将这个函数作为参数传递给装饰器，并将返回的新函数（包装函数）赋值给原函数名。
+
+代码示例：
+
+```python
+def decorator(func):  
+    def wrapper(*args, **kwargs):  
+        # 在这里添加额外的功能  
+        print("Before calling the function")  
+        result = func(*args, **kwargs)  
+        print("After calling the function")  
+        return result  
+    return wrapper  
+  
+@decorator  
+def my_function():  
+    print("Hello, this is my function.")  
+  
+# 调用my_function时，实际上调用的是wrapper函数  
+my_function()
+```
+
+
+
+### 高阶应用
+
+#### 带参数的装饰器
+
+当被装饰的函数需要参数时，装饰器中的包装函数（`wrapper`）也需要能够接收这些参数。这通常通过`*args`和`**kwargs`实现。
+
+```python
+def decorator(func):  
+    def wrapper(*args, **kwargs):  
+        print("Function is called with arguments:", args, kwargs)  
+        result = func(*args, **kwargs)  
+        return result  
+    return wrapper  
+  
+@decorator  
+def my_function(x, y):  
+    return x + y  
+  
+print(my_function(3, 4))
+```
+
+
+
+如果需要给装饰器本身传递参数，可以使用一个外层函数来封装装饰器
+
+```python
+def repeat(num_times):  
+    def decorator(func):  
+        def wrapper(*args, **kwargs):  
+            for _ in range(num_times):  
+                result = func(*args, **kwargs)  
+            return result  
+        return wrapper  
+    return decorator  
+  
+@repeat(3)  
+def say_hello():  
+    print("Hello!")  
+  
+say_hello()  # 输出三次Hello!
+```
+
+#### 类装饰器
+
+参考资料:
+
+[【Python 元编程】装饰器入门指南_python元-CSDN博客](https://frica.blog.csdn.net/article/details/135738501)
+
+[深入理解Python中的装饰器（Decorators）：从基础到高级应用-CSDN博客](https://blog.csdn.net/m0_38123128/article/details/140260446)
 
