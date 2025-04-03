@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
 
 
-### 信号与槽使用
+### 信号
 
 **信号**是一种特殊函数，可以在特定的情况下被`QObject` 对象发射（`emit`）
 
@@ -298,7 +298,7 @@ class MyThread(QThread):
 
 
 
-**槽 Slot**
+### 槽 Slot
 
 在**PySide6**中，可以使用` @Slot()`装饰器 来定义**槽**
 
@@ -321,18 +321,47 @@ class MyThread(QThread):
 
 这里的` @Slot(int)` 可以不写，但是写了可以提高代码**可读性**和**执行效率**。
 
-首先，标明这是一个槽函数；其次，在运行时动态地连接信号，在一定程度上提高代码的执行效率，因为在编译期间不需要生成额外的代码来连接信号和槽。
-
- ```python
-from PySide6.QtCore import (QThread, Signal)
-
-class MyThread(QThread):
-    my_signal = Signal(int)
- ```
 
 
+**所以还是推荐使用`@Slot()`装饰器**
 
-信号和槽只能在 `QObject`的子类里使用
+- `@Slot `装饰器可以更好地管理对象的生命周期，特别是在使用` deleteLater `时
+- 使用 `@Slot` 装饰器可以明确地标识哪些函数是槽函数，提高代码的可读性和可维护性
+- 使用 `@Slot `装饰器可以提供更详细的调试信息，帮助开发者更好地调试和理解信号和槽的连接情况
+
+
+
+`@Slot `装饰器非常灵活，可以根据需要指定多种参数类型，确保信号和槽之间的连接是类型安全的
+
+一个槽函数可以支持一个参数的多种类型，通过使用多个` @Slot `装饰器：
+
+```python
+@Slot(str)
+@Slot(int)
+def on_multiple_signal_types(self, value=None):
+    if isinstance(value, str):
+        self.label.setText(f"Received string: {value}")
+    elif isinstance(value, int):
+        self.label.setText(f"Received integer: {value}")
+    else:
+        self.label.setText("No value received")
+```
+
+`@Slot `装饰器还可以指定多个参数的类型，并且可以使用默认参数：
+
+```python
+@Slot(int, str, bool)
+def on_multiple_parameters(self, number, message, flag):
+    self.label.setText(f"Number: {number}, Message: {message}, Flag: {flag}")
+
+@Slot(int, str, bool)
+def on_multiple_parameters_with_defaults(self, number=0, message="Default", flag=False):
+    self.label.setText(f"Number: {number}, Message: {message}, Flag: {flag}")
+```
+
+
+
+**信号**和**槽**只能在 `QObject`的子类里使用
 
 
 然而，在`PySide6` 中，大部分常用的类都是继承了`QObject`类的，所以这个问题倒无需担心，只需知道有这一概念即可。
@@ -359,8 +388,6 @@ sender.my_signal.connect(receiver)
 
 
 其实就是 使用` connect `将两者连接起来；
-
-
 
 ```python
 import sys
@@ -447,3 +474,121 @@ class MainWindow(QMainWindow):
 
 [参考资料2](https://frica.blog.csdn.net/article/details/130432353)
 
+
+
+
+
+## PySide6网络
+
+`QNetworkAccessManager` 的基本功能
+
+- 发送 HTTP/HTTPS 请求（GET、POST、PUT、DELETE 等）。
+- 支持异步请求，防止阻塞主线程（特别适用于 GUI 程序）。
+- 处理多种类型的网络协议（HTTP、HTTPS、FTP 等）。
+- 提供回调机制，通过信号处理响应。
+- 支持 SSL/TLS 等安全协议。
+
+2. **常用方法**
+
+- **`get(QNetworkRequest)`**：发送 GET 请求。
+- **`post(QNetworkRequest, data)`**：发送 POST 请求。
+- **`put(QNetworkRequest, data)`**：发送 PUT 请求。
+- **`deleteResource(QNetworkRequest)`**：发送 DELETE 请求。
+
+3. **`QNetworkRequest` 与 `QNetworkReply`**
+
+- **`QNetworkRequest`**：用于指定网络请求的 URL 和其他参数，如 HTTP 头、请求超时等。
+- **`QNetworkReply`**：用于接收请求的响应，它包含了响应的数据和状态码。
+
+4. **信号与槽机制**
+
+`QNetworkAccessManager` 是异步工作的，因此使用信号与槽来处理响应。常用信号包括：
+
+- **`finished(QNetworkReply \*)`**：当网络请求完成时发出信号。
+- **`error(QNetworkReply::NetworkError)`**：网络请求失败时发出信号。
+
+
+
+携带Token
+
+```python
+# 设置目标 URL
+url = QUrl("https://jsonplaceholder.typicode.com/posts")
+request = QNetworkRequest(url)
+
+# 添加 JWT Token 到 Authorization 头
+jwt_token = "your_jwt_token_here"  # 将其替换为实际的 JWT Token
+authorization_header = f"Bearer {jwt_token}"
+request.setRawHeader(b"Authorization", QByteArray(authorization_header.encode('utf-8')))
+
+# 发送 GET 请求
+self.manager.get(request)
+```
+
+
+
+### 使用步骤
+
+**创建 `QNetworkAccessManager` 实例**
+
+`QNetworkAccessManager` 管理所有的网络请求和响应。通常，应该将它作为一个对象成员来管理其生命周期。
+
+```python
+class NetworkClient(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("QNetworkAccessManager Example")
+        self.setGeometry(100, 100, 400, 200)
+
+        self.label = QLabel("Waiting for server response...", self)
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        self.setLayout(layout)
+
+        # Initialize QNetworkAccessManager
+        self.manager = QNetworkAccessManager(self)
+        self.manager.finished.connect(self.handle_response)
+
+        # Start network request
+        self.start_request()
+```
+
+**发送请求**
+
+创建 `QNetworkRequest` 对象并设置 URL。然后使用 `QNetworkAccessManager` 的 `get()`, `post()`, `put()`, `delete()` 方法发送请求。
+
+```python
+def start_request(self):
+    url = QUrl("https://api.example.com/data")  # 替换为实际的 URL
+    request = QNetworkRequest(url)
+    self.manager.get(request)  # 发送 GET 请求
+```
+
+**处理响应**
+
+`QNetworkAccessManager` 的 `finished` 信号在请求完成时发射，处理响应通常在这个信号的槽中进行。
+
+```python
+@Slot(QNetworkReply)
+def handle_response(self, reply: QNetworkReply):
+    if reply.error() == QNetworkReply.NoError:
+        # 读取响应数据
+        response_data = reply.readAll().data().decode()
+        self.label.setText("Response: " + response_data)
+    else:
+        # 处理错误
+        self.label.setText(f"Error: {reply.errorString()}")
+    reply.deleteLater()  # 释放资源
+```
+
+
+
+`QTimer` 是 Qt 框架提供的一个定时器对象，它可以在后台线程中运行。
+当定时器超时触发 `self.fetch_data` 时，这个方法会在事件循环中被调度执行，而不会直接影响主线程的任务执行。
+
+事件循环（Event Loop）是一种编程模式，主要用于处理异步事件和用户交互。具体来说：
+监听事件：事件循环不断监听来自外部的各种事件（如用户输入、定时器超时等）。
+调度事件：当检测到事件时，事件循环将相应的事件放入事件队列。
+处理事件：事件循环从队列中取出事件，并调用对应的处理函数（如槽函数）。
+在 Qt 框架中，事件循环通过 `QApplication` 的` exec_() `函数启动，确保应用程序能够响应各种事件而不阻塞主线程

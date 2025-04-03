@@ -145,7 +145,7 @@ def show_user_profile(username):
 
 通过使用 `<转换器:变量名>` ，可以选择性的加上一个**转换器**，为变量指定规则。
 
-| 类型     | 作用                                |
+| 转换器名 | 作用                                |
 | -------- | ----------------------------------- |
 | `string` | （缺省值） 接受任何不包含斜杠的文本 |
 | `int`    | 接受正整数                          |
@@ -166,6 +166,28 @@ def show_subpath(subpath):
     # show the subpath after /path/
     return 'Subpath %s' % escape(subpath)
 ```
+
+
+
+**`string`与`path`的区别：**
+
+```python
+@app.route('/user/<string:username>')
+def show_user(username):
+    return f'User: {username}'
+```
+
+如果你可以访问 `/user/jack`。但是，访问 `/user/jack/smith` 会返回 404 错误，因为 `string` 类型不匹配包含 `/` 的字符串。
+
+```python
+@app.route('/files/<path:filepath>')
+def show_file(filepath):
+    return f'File Path: {filepath}'
+```
+
+如果你访问 `/files/documents/work/file.txt`，`filepath` 会是 `'documents/work/file.txt'`。
+
+
 
 
 
@@ -229,9 +251,238 @@ with app.test_request_context():
 
 
 
+## 蓝图
+
+是一种用于组织代码和实现模块化应用的工具，尤其适合构建大型应用程序。
+
+蓝图可以理解为一组**相关的**路由、视图、模板和静态文件的集合。它使你能够将应用程序拆分为多个部分，并可以独立开发和测试这些部分，最终再将它们注册到主应用程序中。
+
+- 蓝图是 Flask 的扩展工具，用于创建可重用或模块化的应用结构。
+- 它允许你将功能（如路由、模板、静态文件等）封装到独立的模块中，而不必把所有代码都放在一个单独的应用文件中。
+- 蓝图并不直接运行，它们必须注册到 Flask 应用程序中。
+
+类似于`Java`中的`Spring MVC Controllers`
+
+### 蓝图使用
+
+#### 1. 创建蓝图
+
+蓝图的核心类是 `flask.Blueprint`。你首先需要实例化蓝图，然后定义路由、视图等。
+
+例如，我们可以为用户管理功能创建一个蓝图：
+
+```python
+# users.py
+
+from flask import Blueprint
+
+# 创建蓝图实例
+user_bp = Blueprint('user', __name__, url_prefix='/user')
+
+# 定义路由
+@user_bp.route('/<username>')
+def show_user(username):
+    return f'User: {username}'
+```
+
+这里，`user_bp` 是一个蓝图实例，`url_prefix='/user'` 指定了所有与用户相关的路由都会以 `/user` 开头。
+
+#### 2. 注册蓝图到应用程序
+
+在 Flask 应用主文件中，你需要使用`register_blueprint`注册蓝图到应用中：
+
+```python
+# app.py
+
+from flask import Flask
+from users import user_bp  # 导入用户蓝图
+
+app = Flask(__name__)
+
+# 注册蓝图
+app.register_blueprint(user_bp)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+这样，你的应用现在可以访问 `/user/<username>` 这样的 URL 路径。
+
+#### 3. 使用多个蓝图
+
+假设你还需要一个管理后台模块，可以这样做：
+
+```python
+# admin.py
+
+from flask import Blueprint
+
+admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
+
+@admin_bp.route('/')
+def admin_home():
+    return 'Admin Home Page'
+```
+
+然后在主文件中注册：
+
+```python
+# app.py
+
+from flask import Flask
+from users import user_bp
+from admin import admin_bp
+
+app = Flask(__name__)
+
+# 注册用户和管理后台蓝图
+app.register_blueprint(user_bp)
+app.register_blueprint(admin_bp)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+现在你的应用支持访问：
+
+- `/user/<username>`：用户路由
+- `/admin/`：管理后台路由
+
+### 蓝图的优势
+
+1. **组织代码**：通过蓝图，你可以将应用中的不同功能模块化，便于维护和扩展。
+2. **独立开发**：每个蓝图可以独立定义自己的路由、视图函数、静态文件和模板。多个开发者可以并行开发不同的功能模块。
+3. **灵活性**：蓝图可以通过不同的 `url_prefix` 轻松管理不同的 URL 路径，并且能够复用。
+
+### 蓝图扩展功能
+
+- **URL 前缀（`url_prefix`）**：为某一蓝图内的所有路由设置共同的 URL 前缀。
+- **静态文件（`static_folder`）**：每个蓝图都可以有自己独立的静态文件目录。
+- **模板（`template_folder`）**：蓝图可以拥有自己的模板文件夹，便于模块化管理不同的功能界面。
+
+
+
+
+
 
 
 参考资料：
 
 [快速上手_Flask中文网 (github.net.cn)](https://flask.github.net.cn/quickstart.html#id14)
+
+
+
+# 数据库操作
+
+## MongoDB
+
+`pymongo`库
+
+### 投影操作
+
+在 MongoDB 中，投影是指指定查询结果中需要返回的字段。投影操作帮助你控制返回的文档中包含哪些字段，从而提高查询效率和减少传输的数据量。下面是投影操作的详解：
+
+#### 1. 基本语法
+
+在 PyMongo 中，你可以通过 `find()` 方法的第二个参数来指定投影：
+
+```python
+collection.find(query, projection)
+```
+
+- **query**: 查询条件
+- **projection**: 投影字段的指定
+
+#### 2. 选择特定字段
+
+要选择返回的字段，可以在投影中将字段名设为 `1`，将不需要返回的字段设为 `0`。例如：
+
+```python
+# 只返回 name 和 age 字段，_id 字段会自动返回
+result = collection.find({}, {"name": 1, "age": 1})
+```
+
+#### 3. 排除特定字段
+
+如果你想排除某些字段而返回所有其他字段，可以将这些字段的值设为 `0`：
+
+```python
+# 排除 _id 字段，返回所有其他字段
+result = collection.find({}, {"_id": 0})
+```
+
+#### 4. 结合选择和排除字段
+
+你不能同时选择和排除字段，但可以选择一个字段并排除 `_id` 字段：
+
+```python
+# 只返回 name 字段，排除 _id 字段
+result = collection.find({}, {"name": 1, "_id": 0})
+```
+
+#### 5. 嵌套字段的投影
+
+对于嵌套文档，你可以指定特定的嵌套字段：
+
+```python
+# 返回 address 对象中的 city 字段
+result = collection.find({}, {"address.city": 1})
+```
+
+#### 6. 使用投影操作符
+
+MongoDB 支持一些特殊的投影操作符，例如 `$slice` 和 `$elemMatch`，用于处理数组字段：
+
+- `$slice`: 用于限制数组字段中返回的元素数量
+
+  ```python
+  # 只返回 reviews 数组中的前 3 个元素
+  result = collection.find({}, {"reviews": {"$slice": 3}})
+  ```
+
+- `$elemMatch`: 用于匹配数组中的特定元素
+
+  ```python
+  # 只返回 reviews 数组中符合条件的元素
+  result = collection.find({}, {"reviews": {"$elemMatch": {"rating": {"$gte": 4}}}})
+  ```
+
+#### 7. 复杂的投影操作
+
+你还可以在投影中使用表达式和计算，例如使用 `$cond` 操作符：
+
+```python
+# 计算 age 的值是否大于 30，并将结果作为新字段返回
+pipeline = [
+    {"$project": {"age_check": {"$cond": [{"$gt": ["$age", 30]}, True, False]}}}
+]
+result = collection.aggregate(pipeline)
+```
+
+
+
+### 聚合管道
+
+MongoDB 的聚合管道（Aggregation Pipeline）是一种强大的数据处理工具，用于对集合中的文档进行逐步的转换和计算。通过一系列的阶段（stages），你可以对数据进行过滤、排序、分组、计算等操作。
+
+- **管道（Pipeline）**：由多个阶段组成，每个阶段处理管道中传递的文档，最终生成所需的结果。
+
+- **阶段（Stage）**：每个阶段都定义了特定的数据处理操作。文档从一个阶段传递到下一个阶段时，经过处理和转换。
+
+语法：`db.集合名称.aggregate({管道:{表达式}})`
+
+常用管道命令如下：
+
+- `$group`： 将集合中的⽂档分组， 可⽤于统计结果
+- `$match`： 过滤数据， 只输出符合条件的⽂档
+- `$project`： 修改输⼊⽂档的结构， 如重命名、 增加、 删除字段、 创建计算结果
+- `$sort`： 将输⼊⽂档排序后输出
+- `$limit`： 限制聚合管道返回的⽂档数
+- `$skip`： 跳过指定数量的⽂档， 并返回余下的⽂档
+
+
+
+参考资料：
+
+[MongoDB的聚合操作以及常用的管道表达式-CSDN博客](https://blog.csdn.net/qq_44096670/article/details/115558628)
 

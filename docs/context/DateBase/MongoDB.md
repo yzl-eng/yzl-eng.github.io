@@ -275,7 +275,9 @@ db.test0.updateOne( { title: "The Favourite" },
 
 
 
+`$setOnInsert`:如果某一更新操作导致插入文档，则设置字段的值。文档不存在，则插入新文档时，通过该操作符，来设置字段
 
+ `$addToSet`:与 `$push` 类似，但会确保不添加重复元素：
 
 ### 使用数组过滤器
 
